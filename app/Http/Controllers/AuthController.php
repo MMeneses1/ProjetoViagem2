@@ -12,7 +12,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticação bem-sucedida
-            return redirect('/consegui');
+            return redirect('/perfil');
         }
 
         // Autenticação falhou

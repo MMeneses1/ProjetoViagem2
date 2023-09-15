@@ -1,22 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Seu Perfil</h1>
+                <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
+                <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+                <p><strong>Nome de Usuário:</strong> {{ Auth::user()->username }}</p>
+                <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></p>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
 
-@section('content')
-<link rel="stylesheet" href="/css/styles.css">
-<<div class="container">
-    <h1>Perfil do Usuário</h1>
-    @if (session('login_success'))
-        <div class="alert alert-success">
-            Login bem-sucedido!
+                    
+
+            </div>
         </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
-    <p>Nome: {{ $usuario->nome }}</p>
-    <p>E-mail: {{ $usuario->email }}</p>
-    <p>Username: {{ $usuario->username }}</p>
-</div>
-@endsection
+    </div>
+</body>
+</html>

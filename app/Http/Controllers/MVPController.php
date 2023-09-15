@@ -41,4 +41,18 @@ class MVPController extends Controller
             return back()->withInput()->with('error', 'Erro durante o registro. Tente novamente.');
         }
     }
+
+    public function showProfile()
+{
+    $user = Auth::user(); // Obtém o usuário autenticado
+
+    return view('insta.perfil', compact('user'));
+}
+
+public function logout()
+{
+    Auth::logout(); // Efetua o logout do usuário
+    return redirect('/iniciar'); // Redireciona para a página de login ou a que você preferir
+}
+
 }
