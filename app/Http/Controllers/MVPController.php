@@ -82,35 +82,40 @@ class MVPController extends Controller
     }
 
     public function updateProfile(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string|max:255|unique:usuarios,username,' . Auth::id(),
-            'sexo' => 'nullable|string',
-            'telefone' => 'nullable|string',
-            'foto_perfil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $request->validate([
+        'username' => 'required|string|max:255|unique:usuarios,username,' . Auth::id(),
+        'sexo' => 'nullable|string',
+        'telefone' => 'nullable|string',
+        'biografia' => 'nullable|string', // Adicione a validação para a biografia
+        'idioma' => 'nullable|string',    // Adicione a validação para o idioma
+        'foto_perfil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $user = Auth::user();
+    $user = Auth::user();
 
-        $user->username = $request->input('username');
-        $user->sexo = $request->input('sexo');
-        $user->telefone = $request->input('telefone');
+    $user->username = $request->input('username');
+    $user->sexo = $request->input('sexo');
+    $user->telefone = $request->input('telefone');
+    $user->biografia = $request->input('biografia'); // Atualize o campo de biografia
+    $user->idioma = $request->input('idioma');       // Atualize o campo de idioma
 
-        if ($request->hasFile('foto_perfil')) {
-            $imagePath = $request->file('foto_perfil')->store('public/fotos_perfil');
-            $fotoPerfilPath = str_replace('public/', 'storage/', $imagePath);
+    if ($request->hasFile('foto_perfil')) {
+        $imagePath = $request->file('foto_perfil')->store('public/fotos_perfil');
+        $fotoPerfilPath = str_replace('public/', 'storage/', $imagePath);
 
-            if ($user->foto_perfil) {
-                Storage::delete(str_replace('storage/', 'public/', $user->foto_perfil));
-            }
-
-            $user->foto_perfil = $fotoPerfilPath;
+        if ($user->foto_perfil) {
+            Storage::delete(str_replace('storage/', 'public/', $user->foto_perfil));
         }
 
-        if ($user->save()) {
-            return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
-        } else {
-            return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Tente novamente.');
-        }
+        $user->foto_perfil = $fotoPerfilPath;
     }
+
+    if ($user->save()) {
+        return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
+    } else {
+        return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Tente novamente.');
+    }
+}
+
 }

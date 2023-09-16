@@ -37,17 +37,12 @@
             <label for="sexo">Sexo:</label>
             <input type="text" id="sexo" name="sexo" value="{{ old('sexo') }}">
             
-            <label for="biografia">Biografia:</label>
-            <textarea id="biografia" name="biografia">{{ old('biografia') }}</textarea>
-            
             <label for="telefone">Telefone:</label>
             <input type="text" id="telefone" name="telefone" value="{{ old('telefone') }}">
             
             <label for="pais">País:</label>
             <input type="text" id="pais" name="pais" value="{{ old('pais') }}">
             
-            <label for="idioma">Idioma:</label>
-            <input type="text" id="idioma" name="idioma" value="{{ old('idioma') }}">
             
             <label for="foto_perfil">Foto de Perfil:</label>
             <input type="file" id="foto_perfil" name="foto_perfil">

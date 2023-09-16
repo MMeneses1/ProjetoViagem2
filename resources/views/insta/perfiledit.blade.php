@@ -48,6 +48,16 @@
                 <input type="file" id="foto_perfil" name="foto_perfil">
             </div>
 
+            <div class="form-group">
+                <label for="biografia">Biografia:</label>
+                <textarea id="biografia" name="biografia">{{ old('biografia', Auth::user()->biografia) }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="idioma">Idioma:</label>
+                <input type="text" id="idioma" name="idioma" value="{{ old('idioma', Auth::user()->idioma) }}">
+            </div>
+
             <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
         </form>
     </div>
