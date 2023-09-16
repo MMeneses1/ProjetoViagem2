@@ -12,9 +12,15 @@ class User extends Authenticatable
 
     protected $fillable = [
         'email',
-        'nome', // Adicione outros campos preenchíveis aqui
+        'nome',
         'username',
         'password',
+        'sexo', // Adicione os campos adicionais aqui
+        'biografia',
+        'telefone',
+        'pais',
+        'idioma',
+        'foto_perfil',
     ];
 
     protected $hidden = [
@@ -24,8 +30,10 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed', // Isso deve ser 'hashed' se você estiver usando o método Hash para senhas
     ];
 
     protected $table = 'usuarios'; // Defina o nome da tabela correta
+
+    
 }
+

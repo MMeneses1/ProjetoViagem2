@@ -8,13 +8,17 @@ Route::post('/iniciar', [AuthController::class, 'authenticate']);
 
 Route::get('/consegui', function () {
     return view('consegui'); 
-    })->name('consegui');
-
+})->name('consegui');
 
 Route::get('/register', [MVPController::class, 'showRegisterForm'])->name('insta.register');
 Route::post('/register', [MVPController::class, 'register'])->name('register');
 
+Route::middleware('auth')->group(function () {
+    // Rotas protegidas por autenticação
 
-Route::get('/perfil', [MVPController::class, 'showProfile'])->middleware('auth')->name('perfil');
-Route::post('/logout', [MVPController::class, 'logout'])->name('logout');
+    Route::get('/perfil', [MVPController::class, 'showProfile'])->name('perfil');
+    Route::post('/logout', [MVPController::class, 'logout'])->name('logout');
 
+    Route::get('/perfil/editar', [MVPController::class, 'showProfileEditForm'])->name('insta.perfiledit');
+    Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
+});

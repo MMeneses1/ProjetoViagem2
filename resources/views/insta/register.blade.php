@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('caminho-para-seu-arquivo-css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -15,8 +15,9 @@
             </div>
         @endif
 
-        <form action="{{ route('register') }}" method="post">
+        <form action="{{ route('register') }}" method="post" enctype="multipart/form-data"> <!-- Adicione 'enctype' para lidar com o upload de arquivos -->
             {{ csrf_field() }}
+            
             <label for="email">E-mail de usuário:</label>
             <input type="text" id="email" name="email" value="{{ old('email') }}" required>
             
@@ -31,6 +32,25 @@
             
             <label for="password_confirmation">Confirme a senha:</label>
             <input type="password" id="password_confirmation" name="password_confirmation" required>
+            
+            <!-- Novos campos -->
+            <label for="sexo">Sexo:</label>
+            <input type="text" id="sexo" name="sexo" value="{{ old('sexo') }}">
+            
+            <label for="biografia">Biografia:</label>
+            <textarea id="biografia" name="biografia">{{ old('biografia') }}</textarea>
+            
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" value="{{ old('telefone') }}">
+            
+            <label for="pais">País:</label>
+            <input type="text" id="pais" name="pais" value="{{ old('pais') }}">
+            
+            <label for="idioma">Idioma:</label>
+            <input type="text" id="idioma" name="idioma" value="{{ old('idioma') }}">
+            
+            <label for="foto_perfil">Foto de Perfil:</label>
+            <input type="file" id="foto_perfil" name="foto_perfil">
             
             <button type="submit">Registrar</button>
         </form>

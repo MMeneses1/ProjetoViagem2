@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
             ],
+            output: 'public/build', // Defina o diretório de saída do Vite
             refresh: true,
         }),
         react(),
