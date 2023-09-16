@@ -108,7 +108,7 @@ class MVPController extends Controller
         }
 
         if ($user->save()) {
-            return redirect()->route('perfil.edit')->with('success', 'Perfil atualizado com sucesso!');
+            return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
         } else {
             return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Tente novamente.');
         }

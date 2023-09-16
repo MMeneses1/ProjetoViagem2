@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('caminho-para-seu-arquivo-css/styles.css') }}">
+    <link rel="stylesheet" href="/css/styles.css"> 
 </head>
 <body>
     <div class="container">

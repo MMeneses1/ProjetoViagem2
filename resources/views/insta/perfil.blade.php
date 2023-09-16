@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    @include('inc.topo')
+  
 
     <div class="container-fluid">
         <div class="row">
@@ -32,7 +32,7 @@
                     @csrf
                 </form>
             </div>
-            <a href="" class="btn btn-primary">Editar Perfil</a>
+            <a href="{{ route('insta.perfiledit') }}" class="btn btn-primary">Editar Perfil</a>
         </div>
     </div>
 </body>
