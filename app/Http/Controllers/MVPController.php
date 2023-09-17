@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\Post;
 
 class MVPController extends Controller
 {
@@ -67,7 +68,8 @@ class MVPController extends Controller
     public function showProfile()
     {
         $user = Auth::user();
-        return view('insta.perfil', compact('user'));
+        $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
+        return view('insta.perfil', compact('user', 'posts')); // Defina a visão 'insta.perfil'
     }
 
     public function logout()
@@ -117,5 +119,6 @@ class MVPController extends Controller
         return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Tente novamente.');
     }
 }
+
 
 }

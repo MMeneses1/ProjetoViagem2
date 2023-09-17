@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\MVPController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+
 
 Route::get('/iniciar', [MVPController::class, 'showLoginForm'])->name('login');
 Route::post('/iniciar', [AuthController::class, 'authenticate']);
@@ -21,4 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/perfil/editar', [MVPController::class, 'showProfileEditForm'])->name('insta.perfiledit');
     Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
+
+    Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
 });
