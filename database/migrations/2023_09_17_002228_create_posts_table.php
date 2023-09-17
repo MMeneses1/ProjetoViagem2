@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
             $table->text('content')->nullable(); // Conteúdo da postagem (pode ser nulo)
             $table->string('image')->nullable(); // Nome do arquivo de imagem (pode ser nulo)
             $table->timestamps(); // Data de criação e atualização da postagem
+            $table->string('caption')->nullable();
         });
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -11,11 +10,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => 'required|string|max:255', // Defina as regras de validação conforme necessário
+            'content' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'caption' => 'nullable|string|max:255', // Adicione a regra de validação para a legenda
         ]);
 
-        // Salvar a postagem
         $post = new Post();
         $post->content = $request->input('content');
         
@@ -23,6 +22,9 @@ class PostController extends Controller
             $imagePath = $request->file('image')->store('public/images');
             $post->image = str_replace('public/', 'storage/', $imagePath);
         }
+
+        // Salvar a legenda
+        $post->caption = $request->input('caption');
 
         $post->user_id = auth()->user()->id;
         $post->save();
