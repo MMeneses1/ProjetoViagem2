@@ -34,6 +34,9 @@ class User extends Authenticatable
 
     protected $table = 'usuarios'; // Defina o nome da tabela correta
 
-    
+    public function posts()
+{
+    return $this->hasMany(Post::class);
+}
 }
 

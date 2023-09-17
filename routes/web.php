@@ -3,7 +3,6 @@
 use App\Http\Controllers\MVPController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
 
 
 Route::get('/iniciar', [MVPController::class, 'showLoginForm'])->name('login');
@@ -26,5 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
 
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
 
 });

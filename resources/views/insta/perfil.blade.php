@@ -87,8 +87,12 @@
                 <button type="submit" class="btn btn-primary">Enviar Postagem</button>
             </form> 
         </div>
-        <!-- Seção para exibir os posts -->
-@if(isset($posts) && is_array($posts) && count($posts) > 0)
+        
+
+
+    </div>
+
+    @if(!$noPosts)
     <h2>Seus Posts</h2>
     <ul>
         @foreach($posts as $post)
@@ -108,9 +112,11 @@
             </li>
         @endforeach
     </ul>
+@else
+    <p>Nenhuma postagem encontrada.</p>
 @endif
 
 
-    </div>
+
 </body>
 </html>

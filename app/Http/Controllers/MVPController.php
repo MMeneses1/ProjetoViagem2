@@ -65,12 +65,30 @@ class MVPController extends Controller
         }
     }
 
+
+
+
+
+
+
+
     public function showProfile()
-    {
-        $user = Auth::user();
-        $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
-        return view('insta.perfil', compact('user', 'posts')); // Defina a visão 'insta.perfil'
-    }
+{
+    $user = Auth::user();
+    $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
+    $noPosts = $posts->isEmpty(); // Verifique se não há postagens
+
+    return view('insta.perfil', compact('user', 'posts', 'noPosts'));
+}
+
+
+
+
+
+
+
+
+
 
     public function logout()
     {
