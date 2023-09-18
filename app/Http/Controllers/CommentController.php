@@ -29,4 +29,23 @@ class CommentController extends Controller
     return redirect()->back()->with('success', 'Comentário adicionado com sucesso.');
 }
 
+public function destroy(Comment $comment)
+{
+    // Verifique se o usuário autenticado pode excluir o comentário
+    if (auth()->user()->canDeleteComment($comment)) {
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comentário excluído com sucesso.');
+    } else {
+        return redirect()->back()->with('error', 'Você não tem permissão para excluir este comentário.');
+    }
+}
+
+public function index(Comment $comment)
+{
+    $comments = $post->comments()->orderBy('created_at', 'desc')->get();
+
+    return view('post.show', compact('post', 'comments'));
+}
+
+
 }

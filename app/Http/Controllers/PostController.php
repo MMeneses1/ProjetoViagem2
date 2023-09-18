@@ -31,4 +31,26 @@ class PostController extends Controller
 
         return redirect()->back()->with('success', 'Postagem criada com sucesso.');
     }
+
+    public function destroy(Post $post)
+{
+    // Verifique se o usuário autenticado é o proprietário do post
+    if (auth()->user()->id === $post->user_id) {
+        // Exclua o post e seus comentários relacionados, se necessário
+        $post->comments()->delete(); // Isso exclui todos os comentários relacionados ao post
+        $post->delete();
+
+        return redirect()->back()->with('success', 'Post excluído com sucesso.');
+    }
+
+    return redirect()->back()->with('error', 'Você não tem permissão para excluir este post.');
+}
+
+public function index()
+{
+    $posts = Post::orderBy('created_at', 'desc')->get();
+
+    return view('inicio', compact('posts'));
+}
+
 }

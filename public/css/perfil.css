@@ -1,0 +1,84 @@
+/* Estilos gerais da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Cor de fundo de exemplo */
+}
+
+.container-fluid {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1500px; /* Define a largura máxima do conteúdo */
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Estilos dos posts */
+.post-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    font-size: 14px;
+    color: #666;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.post-image {
+    max-width: 100%; /* A imagem não será maior que a largura da caixa */
+    height: auto; /* A altura se ajustará automaticamente para manter a proporção */
+    display: block; /* Corrige um pequeno espaço extra na parte inferior da imagem */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+
+/* Estilos dos comentários */
+.comment-box {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    max-height: 300px; /* Altura máxima com barra de rolagem */
+    overflow-y: auto; /* Adicionar barra de rolagem vertical quando necessário */
+    
+}
+
+.comment-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}S
+
+.comment-header {
+    font-size: 14px;
+    color: #666;
+}
+
+.comment-text {
+    margin-top: 10px;
+}
+
+.comment-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}

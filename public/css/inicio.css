@@ -11,116 +11,71 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Adicione este CSS no seu arquivo inicio.css */
+
 /* Estilo do contêiner principal */
 .container-fluid {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Isso garantirá que o contêiner ocupe pelo menos a altura da janela do navegador */
+    
 }
 
-/* Estilo do título */
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Estilo dos links */
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-/* Estilo dos botões */
-.btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo das listas */
-ul {
+/* Estilo dos posts */
+.post-list {
     list-style-type: none;
     padding: 0;
 }
 
-/* Estilo dos itens da lista */
-li {
+.post-item {
     margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Adicione flex-wrap para que os comentários fiquem abaixo dos posts */
 }
 
-/* Estilo das imagens */
-img {
-    max-width: 100%;
-    height: auto;
+.post-container {
+    flex: 1;
+    min-width: 60%; /* Defina um tamanho mínimo para os posts */
+    border-bottom: 1px solid #ccc; /* Adicione uma borda inferior */
+        padding-bottom: 10px; /* Adicione espaço entre o texto e a borda inferior */
 }
 
-/* Estilo dos formulários */
-.form-group {
-    margin-bottom: 15px;
+.post-header {
+    margin-bottom: 10px;
 }
 
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.post-content {
+    margin-bottom: 10px;
+    
 }
 
-.form-control-file {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Estilo do botão de envio */
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo do box de comentários */
-.comment-box {
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-/* Estilo da lista de comentários dentro do box */
-.comment-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-/* Estilo das imagens dos posts */
 .post-image {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 10px 0;
-    border-radius: 5px;
+    
+}
+
+/* Estilo dos comentários */
+.comment-box {
+    flex: 1;
+    min-width: 40%; /* Defina um tamanho mínimo para a caixa de comentários */
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+    overflow-y: auto; /* Adicione uma barra de rolagem vertical para os comentários */
+    max-height: 400px;
+    
+}
+
+/* Estilo dos itens da lista de comentários */
+.comment-item {
+    margin-bottom: 30px; /* Adicione espaço entre os comentários */
+    border-bottom: 1px solid #ccc; /* Adicione uma borda inferior */
+        padding-bottom: 10px; /* Adicione espaço entre o texto e a borda inferior */
 }

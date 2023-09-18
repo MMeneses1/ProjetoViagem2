@@ -20,44 +20,91 @@
             </div>
         </div>
 
+        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-group">
+                    <label for="content">Texto da Postagem:</label>
+                    <textarea id="content" name="content" class="form-control" rows="4" placeholder="Digite sua postagem aqui"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Imagem (opcional):</label>
+                    <input type="file" id="image" name="image" class="form-control-file">
+                </div>
+
+                <!-- Adicione o campo para a legenda da foto -->
+                <div class="form-group">
+                    <label for="caption">Legenda da Foto:</label>
+                    <input type="text" id="caption" name="caption" class="form-control" value="{{ old('caption') }}">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Postagem</button>
+            </form>
+
+
         @if(!$noPosts)
-        <h2>Seus Posts</h2>
-        <ul class="post-list">
-            @foreach($posts as $post)
-                <li class="post-item">
+    <h2>Seus Posts</h2>
+    <ul class="post-list">
+        @foreach($posts->sortByDesc('created_at') as $post)
+            <li class="post-item">
+                <div class="post-container">
                     <div class="post-header">
+                        <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
                         <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
-                        <p><strong>Data da Postagem:</strong> {{ $post->created_at->format('d/m/Y H:i:s') }}</p>
                     </div>
+
+                    <!-- Verifique se a postagem pertence ao usuário autenticado -->
+                    @if(Auth::user()->id === $post->user->id)
+                        <!-- Botão de exclusão do post -->
+                        <form action="{{ route('post.delete', ['post' => $post->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Excluir Post</button>
+                        </form>
+                    @endif
 
                     @if($post->caption)
                         <p><strong>Legenda:</strong> {{ $post->caption }}</p>
                     @endif
 
-                    <p class="post-content">{{ $post->content }}</p>
-
-                    @if($post->image)
-                        <img src="{{ asset($post->image) }}" alt="Imagem da postagem" class="post-image">
-                    @endif
-
-                    <div class="comment-box">
-                        <h3>Comentários:</h3>
-                        <ul class="comment-list">
-                            @foreach($post->comments as $comment)
-                                <li class="comment-item">
-                                    <div class="comment-header">
-                                        <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
-                                        <p><strong>Data da Postagem:</strong> {{ $post->created_at->format('d/m/Y H:i:s') }}</p>
-                                    </div>
-                                    <p class="comment-text">{{ $comment->text }}</p>
-                                    @if($comment->image)
-                                        <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário" class="comment-image">
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
+                    <div class="post-content">
+                        @if($post->image)
+                            <img src="{{ asset($post->image) }}" alt="Imagem da postagem" class="post-image">
+                        @endif
+                        <p>{{ $post->content }}</p>
                     </div>
+                </div>
 
+                <div class="comment-box">
+                    <br>
+                    <h3>Comentários:</h3>
+                    <br>
+                    <br>
+                    <ul class="comment-list">
+                        @foreach($post->comments->sortByDesc('created_at') as $comment)
+                            <li class="comment-item">
+                                <div class="comment-header">
+                                    <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
+                                    <p><strong>Usuário:</strong> {{ $comment->user->username }}</p>
+                                </div>
+                                <p class="comment-text">{{ $comment->text }}</p>
+
+                                <!-- Botão de exclusão de comentário -->
+                                @if(Auth::check() && (Auth::user()->id === $comment->user->id || Auth::user()->id === $post->user->id))
+                                    <form action="{{ route('comment.delete', ['comment' => $comment->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Excluir Comentário</button>
+                                    </form>
+                                @endif
+
+                                @if($comment->image)
+                                    <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário" class="comment-image">
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
                     <form action="{{ route('comment.store', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data" class="comment-form">
                         @csrf
                         <div class="form-group">
@@ -70,12 +117,13 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar Comentário</button>
                     </form>
-                </li>
-            @endforeach
-        </ul>
-        @else
-            <p>Nenhuma postagem encontrada.</p>
-        @endif
-    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+@else
+    <p>Nenhuma postagem encontrada.</p>
+@endif
+
 </body>
 </html>

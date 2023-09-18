@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
@@ -38,5 +39,21 @@ class User extends Authenticatable
 {
     return $this->hasMany(Post::class);
 }
+
+
+public function canDeleteComment(Comment $comment)
+{
+    // Verifique se o usuário é o autor do comentário OU o autor do post associado ao comentário
+    return $this->id === $comment->user_id || $this->id === $comment->post->user_id;
+}
+
+public function canEditComment(Comment $comment)
+{
+    // Verifique se o usuário é o autor do comentário
+    return $this->id === $comment->user_id;
+}
+
+
+
 }
 

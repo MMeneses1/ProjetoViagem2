@@ -82,7 +82,14 @@ class MVPController extends Controller
 }
 
 
+public function showDados()
+{
+    $user = Auth::user();
+    $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
+    $noPosts = $posts->isEmpty(); // Verifique se não há postagens
 
+    return view('insta.perfilpessoal', compact('user', 'posts', 'noPosts'));
+}
 
 
 
