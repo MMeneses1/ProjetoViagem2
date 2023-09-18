@@ -92,29 +92,65 @@
             </form>
 
             @if(!$noPosts)
-                <h2>Seus Posts</h2>
-                <ul>
-                    @foreach($posts as $post)
-                        <li>
-                            <!-- Exiba o conteúdo da postagem -->
-                            <p>{{ $post->content }}</p>
-                            
-                            <!-- Verifique se a postagem possui uma imagem -->
-                            @if($post->image)
-                                <p><strong>Imagem da Postagem:</strong></p>
-                                <img src="{{ asset($post->image) }}" alt="Imagem da postagem">
-                            @endif
+    <h2>Seus Posts</h2>
+    <ul>
+        @foreach($posts as $post)
+            <li>
+                <!-- Exiba o conteúdo da postagem -->
+                <p>{{ $post->content }}</p>
+                
+                <!-- Verifique se a postagem possui uma imagem -->
+                @if($post->image)
+                    <p><strong>Imagem da Postagem:</strong></p>
+                    <img src="{{ asset($post->image) }}" alt="Imagem da postagem">
+                @endif
 
-                            <!-- Verifique se a postagem possui uma legenda -->
-                            @if($post->caption)
-                                <p><strong>Legenda:</strong> {{ $post->caption }}</p>
-                            @endif
+                <!-- Verifique se a postagem possui uma legenda -->
+                @if($post->caption)
+                    <p><strong>Legenda:</strong> {{ $post->caption }}</p>
+                @endif
+
+                <!-- Exibir os comentários -->
+                <h3>Comentários:</h3>
+                <ul>
+                    @foreach($post->comments as $comment)
+                        <li>
+                            <!-- Exiba o texto do comentário -->
+                            <p>{{ $comment->text }}</p>
+                            
+                            <!-- Verifique se o comentário possui uma imagem -->
+                            @if($comment->image)
+                <p><strong>Imagem do Comentário:</strong></p>
+                <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário">
+            @endif
                         </li>
                     @endforeach
                 </ul>
-            @else
-                <p>Nenhuma postagem encontrada.</p>
-            @endif
+
+                <!-- Formulário para adicionar comentários -->
+                <form action="{{ route('comment.store', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="comment">Adicionar um Comentário:</label>
+                        <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Digite seu comentário aqui"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment_image">Imagem do Comentário (opcional):</label>
+                        <input type="file" id="comment_image" name="comment_image" class="form-control-file">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
+@else
+    <p>Nenhuma postagem encontrada.</p>
+@endif
+
+
         </div>
     </div>
 </body>
