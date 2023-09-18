@@ -10,69 +10,52 @@
     <div class="container-fluid mx-auto">
         <div class="row">
             <a href="{{ route('inicio') }}" class="btn btn-primary">Ir para o Início</a>
-
-            <div class="col-lg-12 mx-auto">
-                <h1>Seu Perfil</h1>
-
-                <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
-                @if(Auth::user()->foto_perfil)
-                    <p><strong>Foto de Perfil:</strong></p>
-                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
-                @endif
-
-                <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
-                <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                <p><strong>Nome de Usuário:</strong>
-                    @if(empty(Auth::user()->username))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->username }}
-                    @endif
-                </p>
-                <p><strong>Sexo:</strong>
-                    @if(empty(Auth::user()->sexo))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->sexo }}
-                    @endif
-                </p>
-                <p><strong>Biografia:</strong>
-                    @if(empty(Auth::user()->biografia))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->biografia }}
-                    @endif
-                </p>
-                <p><strong>Telefone:</strong>
-                    @if(empty(Auth::user()->telefone))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->telefone }}
-                    @endif
-                </p>
-                <p><strong>País:</strong>
-                    @if(empty(Auth::user()->pais))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->pais }}
-                    @endif
-                </p>
-                <p><strong>Idioma:</strong>
-                    @if(empty(Auth::user()->idioma))
-                        Preencha agora!
-                    @else
-                        {{ Auth::user()->idioma }}
-                    @endif
-                </p>
-                <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></p>
+            
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </div>
             <a href="{{ route('perfilpessoal') }}" class="btn btn-primary">Editar Perfil</a>
+            <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></p>
+
+            <div class="col-lg-12 mx-auto text-center">
+    <h1>Seu Perfil</h1>
+
+    <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
+    @if(Auth::user()->foto_perfil)
+        <div class="profile-picture">
+            <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
+        </div>
+    @endif
+
+    <div class="profile-info">
+    <p><strong>Nome de Usuário:</strong> {{Auth::user()->username}} </p>
+    
+    <div class="user-details">
+    <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
+            <p><strong>País:</strong>
+                @if(empty(Auth::user()->pais))
+                    Preencha agora!
+                @else
+                    {{ Auth::user()->pais }}
+                @endif
+            </p>
+        </div>
+        <p><strong>Biografia:</strong>
+            @if(empty(Auth::user()->biografia))
+                Preencha agora!
+            @else
+                {{ Auth::user()->biografia }}
+            @endif
+        </p>
+    </div>
+</div>
+
+                
+               
 
 
-            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" class="post-form">
                 @csrf
 
                 <div class="form-group">

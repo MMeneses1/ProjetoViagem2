@@ -82,3 +82,69 @@ h2 {
     height: auto;
     margin-top: 10px;
 }
+
+
+/* Estilo do formulário de post */
+.post-form {
+    max-width: 50%; /* Alterado para 50% para ocupar metade da largura */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.post-form label {
+    font-weight: bold;
+}
+
+.post-form textarea,
+.post-form input[type="text"],
+.post-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.post-form button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.post-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da caixa separada */
+.form-container {
+    max-width: 50%; /* Alterado para 50% para ocupar metade da largura */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilo da foto de perfil */
+.profile-picture {
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos detalhes do usuário */
+.user-details {
+    display: flex;
+    justify-content: space-between;
+}

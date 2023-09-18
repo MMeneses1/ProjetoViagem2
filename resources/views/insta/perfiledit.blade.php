@@ -11,6 +11,9 @@
 
     <div class="container">
         <h1>Editar Perfil</h1>
+         
+        
+
 
         @if (session('error'))
             <div class="alert alert-danger">
@@ -59,6 +62,8 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
+
+            <a href="{{ route('perfilpessoal') }}" class="btn btn-primary">Voltar</a>
         </form>
     </div>
 </body>

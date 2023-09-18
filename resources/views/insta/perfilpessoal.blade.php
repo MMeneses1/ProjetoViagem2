@@ -9,9 +9,9 @@
 <body class="text-center">
     <div class="container-fluid mx-auto">
         <div class="row">
-            <a href="{{ route('inicio') }}" class="btn btn-primary">Ir para o Início</a>
 
             <div class="col-lg-12 mx-auto">
+            <a href="{{ route('perfil') }}" class="btn btn-primary">Voltar Perfil</a>
                 <h1>Seus Dados</h1>
 
                 <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
