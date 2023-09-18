@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
+        <a href="{{ route('inicio') }}" class="btn btn-primary">Ir para o Início</a>
+
             <div class="col-lg-12">
                 <h1>Seu Perfil</h1>
+
+                 <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
+                 @if(Auth::user()->foto_perfil)
+                    <p><strong>Foto de Perfil:</strong></p>
+                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
+                @endif
+
                 <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
                 <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
                 <p><strong>Nome de Usuário:</strong>
@@ -56,11 +65,7 @@
                     @endif
                 </p>
 
-                <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
-                @if(Auth::user()->foto_perfil)
-                    <p><strong>Foto de Perfil:</strong></p>
-                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
-                @endif
+               
 
                 <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></p>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -96,33 +101,41 @@
     <ul>
         @foreach($posts as $post)
             <li>
+                <!-- Exiba o nome do usuário e a data da postagem -->
+                <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
+                <p><strong>Data da Postagem:</strong> {{ $post->created_at->format('d/m/Y H:i:s') }}</p>
+
+                 <!-- Verifique se a postagem possui uma legenda -->
+                @if($post->caption)
+                    <p><strong>Legenda:</strong> {{ $post->caption }}</p>
+                @endif   
+
                 <!-- Exiba o conteúdo da postagem -->
                 <p>{{ $post->content }}</p>
                 
                 <!-- Verifique se a postagem possui uma imagem -->
                 @if($post->image)
-                    <p><strong>Imagem da Postagem:</strong></p>
+                    
                     <img src="{{ asset($post->image) }}" alt="Imagem da postagem">
                 @endif
 
-                <!-- Verifique se a postagem possui uma legenda -->
-                @if($post->caption)
-                    <p><strong>Legenda:</strong> {{ $post->caption }}</p>
-                @endif
+                
 
                 <!-- Exibir os comentários -->
                 <h3>Comentários:</h3>
                 <ul>
                     @foreach($post->comments as $comment)
                         <li>
+                        <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
+                        <p><strong>Data da Postagem:</strong> {{ $post->created_at->format('d/m/Y H:i:s') }}</p>
                             <!-- Exiba o texto do comentário -->
                             <p>{{ $comment->text }}</p>
                             
                             <!-- Verifique se o comentário possui uma imagem -->
                             @if($comment->image)
-                <p><strong>Imagem do Comentário:</strong></p>
-                <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário">
-            @endif
+                                
+                                <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário">
+                            @endif
                         </li>
                     @endforeach
                 </ul>
@@ -149,6 +162,7 @@
 @else
     <p>Nenhuma postagem encontrada.</p>
 @endif
+
 
 
         </div>

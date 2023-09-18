@@ -4,6 +4,7 @@ use App\Http\Controllers\MVPController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\InicioController;
 
 
 Route::get('/iniciar', [MVPController::class, 'showLoginForm'])->name('login');
@@ -27,7 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
     Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comment.store');
-
+    Route::get('/inicio', [InicioController::class, 'index'])->name('inicio');
 
 
 });
