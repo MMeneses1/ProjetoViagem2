@@ -6,16 +6,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\InicioController;
 
-
+Route::get('/', [MVPController::class, 'showLoginForm'])->name('login');
 Route::get('/iniciar', [MVPController::class, 'showLoginForm'])->name('login');
 Route::post('/iniciar', [AuthController::class, 'authenticate']);
 
-Route::get('/consegui', function () {
-    return view('consegui'); 
-})->name('consegui');
-
-Route::get('/register', [MVPController::class, 'showRegisterForm'])->name('insta.register');
-Route::post('/register', [MVPController::class, 'register'])->name('register');
+Route::get('/signup', [MVPController::class, 'showRegisterForm'])->name('insta.register');
+Route::post('/signup', [MVPController::class, 'register'])->name('register');
 
 Route::middleware('auth')->group(function () {
     // Rotas protegidas por autenticação
