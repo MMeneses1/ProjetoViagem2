@@ -1,46 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/styles.css"> 
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row row-login">
-            <div class="col-lg-6 img-container">
-                <img src="https://images.vexels.com/media/users/3/145797/isolated/preview/efb294b147c67b1ee6ff84041f7c11c2-aviao-decolando.png" alt="MVPGram" class="img-fluid">
+@extends('layouts.template1')
+@section('titulo', 'Login')
+@section('css', '/css/login.css')
+@section('conteudo')
+
+        <div class="row">
+            <div class = "col-md-1"></div>
+            <div class = "col-md-5 login">
+                <h1 class = "titulologin">Bem vindo de volta!</h1>
+                <p class = "paragrafologin">Entre com os seus dados para compartilhar mais uma viagem.</p>
             </div>
 
-            <div class="col-lg-6 form-container">
-                <div class="box">
-                    <div class="box-header">
-                        <h2>PROJETO VIAGEM</h2>
-                    </div>
-                    <div class="box-content">
-                        @if(session('error'))
-                            <div class="alert alert-danger">{{ session('error') }}</div>
-                        @endif
+            <div class="col-md-5 formlogin">
+                <form action="{{ route('login') }}" method="POST" class="formlogin">
+                    <h2>Acesse a sua conta<h2>
+                    @csrf <!-- Adicione o token CSRF -->
+                    <label class="form-label" for="email">E-mail ou usuário:</label>
+                    <input type="text" class="form-control" placeholder="exemplo@email.com" name="email">
 
-                        <form action="{{ route('login') }}" method="POST" class="formLogin">
-                            @csrf <!-- Adicione o token CSRF -->
-                            <input type="text" class="form-control" placeholder="E-mail de usuário" name="email">
-                            <br>
-                            <input type="password" class="form-control" placeholder="Senha" name="password">
-                            <br>
-                            <input type="submit" class="btn btn-insta" value="Login">
-                        </form>
-                    </div>
-                </div>
+                    <label class="form-label" for="password">Senha:</label>
+                    <input type="password" class="form-control" placeholder="Digite a sua senha" name="password">
+                    <a href = "#">Esqueci a minha senha</a>
+                    
+                    <button class="btn" type="submit">Entrar</button>
+                </form>
 
-                <br>
-                <br>
-                <div class="box box-content texto-alinhado">
-                    Não tem uma conta? <a href="/register">Cadastre-se agora</a>
-                </div>
+                <p class = "registerlogin">Não tem uma conta? <a href="/register">Clique aqui para se cadastrar!</a></p>
             </div>
+            <div class = "col-md-1"></div>
         </div>
-    </div>
-</body>
-</html>
+
+@endsection

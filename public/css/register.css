@@ -1,0 +1,90 @@
+/* CADASTRO - REGISTER.BLADE.PHP */
+
+body{
+    font-family: 'Montserrat';
+}
+.container-fluid{
+    background-image: url('https://images8.alphacoders.com/101/1015192.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.header a{
+    color: white;
+    position: fixed;
+    top: 0;
+}
+
+.titulolanding{
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px #204028;
+    font-weight: 1000;
+    padding: 15% 15% 10% 15%;
+    font-style: italic;
+}
+
+.paragrafolanding{
+    color: white;
+    text-align: center;
+}
+
+.iconelanding{
+    animation: pulsar 1s infinite alternate;
+}
+
+@keyframes pulsar {
+    0%{
+        transform: scale(.8);
+    }
+
+    100%{
+        transform: scale(1.2);
+    }
+}
+
+.formregister{
+    background-color: rgb(244, 255, 247, 0.5);
+    padding: 10%;
+}
+
+.formregister label{
+    font-weight: bold;
+    color:#204028;
+}
+
+.formregister input{
+    border-radius: 30px;
+    margin-bottom: 5%;
+}
+
+.formregister .btn{
+    background-color: #204028;
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+
+.formregister .btn:hover{
+    background-color: rgb(105, 240, 59);
+}
+
+.formregister p{
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.formregister .loginlanding{
+    margin-top: 5%;
+    margin-bottom: 0;
+}
+
+.formregister .loginlanding a{
+    color: #204028;
+}
+
+.formregister .loginlanding a:hover{
+    font-size: 1rem;
+}
