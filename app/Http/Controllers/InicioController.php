@@ -11,7 +11,7 @@ class InicioController extends Controller
         // Adicione qualquer lógica que você precise para obter os posts ou outros dados aqui
         $posts = Post::all(); // Substitua isso pela forma como você obtém seus posts
 
-        return view('insta.inicio', [
+        return view('insta.login', [
             'posts' => $posts,
             'noPosts' => $posts->isEmpty(),
         ]);

@@ -23,7 +23,7 @@ class MVPController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $rules = [
             'email' => 'required|string|email|max:255|unique:usuarios',
             'nome' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:usuarios',
@@ -34,7 +34,20 @@ class MVPController extends Controller
             'pais' => 'nullable|string',
             'idioma' => 'nullable|string',
             'foto_perfil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajuste o tamanho máximo conforme necessário
-        ]);
+        ];
+
+        $messages = [
+            'email' => 'Por favor, informe um e-mail válido.',   
+            'email.unique' => 'Este e-mail já está sendo utilizado.',
+            'nome' => 'Por favor, informe o seu nome.',
+            'usuario' => 'Por favor, informe um usuário.',
+            'usuario.unique' => 'Este usuário já está sendo utilizado',
+            'password.required' => 'Por favor, informe uma senha',
+            'password.min' => 'A senha deve ter no mínimo 8 dígitos',
+            'password.confirmed' => 'As senhas não são compatíveis.'
+        ];
+
+        $request->validate($rules, $messages);
 
         $fotoPerfilPath = null;
 
@@ -65,13 +78,6 @@ class MVPController extends Controller
         }
     }
 
-
-
-
-
-
-
-
     public function showProfile()
 {
     $user = Auth::user();
@@ -80,7 +86,6 @@ class MVPController extends Controller
 
     return view('insta.perfil', compact('user', 'posts', 'noPosts'));
 }
-
 
 public function showDados()
 {
@@ -91,16 +96,10 @@ public function showDados()
     return view('insta.perfilpessoal', compact('user', 'posts', 'noPosts'));
 }
 
-
-
-
-
-
-
     public function logout()
     {
         Auth::logout();
-        return redirect('/iniciar');
+        return redirect('/login');
     }
 
     public function showProfileEditForm()

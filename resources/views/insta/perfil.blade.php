@@ -9,7 +9,7 @@
 <body class="text-center">
     <div class="container-fluid mx-auto">
         <div class="row">
-            <a href="{{ route('inicio') }}" class="btn btn-primary">Ir para o Início</a>
+            <a href="{{ route('login') }}" class="btn btn-primary">Ir para o Início</a>
             
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

@@ -10,11 +10,6 @@
 </head>
 <body>
     <div class="container-fluid">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
 
         <nav class="navbar header">
             <div class="container">

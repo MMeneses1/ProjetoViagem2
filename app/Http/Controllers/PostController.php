@@ -50,7 +50,7 @@ public function index()
 {
     $posts = Post::orderBy('created_at', 'desc')->get();
 
-    return view('inicio', compact('posts'));
+    return view('login', compact('posts'));
 }
 
 }

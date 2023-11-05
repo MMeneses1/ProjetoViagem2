@@ -12,11 +12,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticação bem-sucedida
-            return redirect('/perfil');
+            return redirect('/feed');
         }
 
         // Autenticação falhou
-        return redirect('/iniciar')->with('error', 'Credenciais inválidas');
+        return redirect('/login')->with('error', 'E-mail ou senha incorretos. Por favor, tente novamente.');
     }
 }
 
