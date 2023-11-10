@@ -137,11 +137,17 @@ h2 {
 .profile-picture {
     width: 250px;
     height: 250px;
-    border-radius: 100%;
+    border-radius: 50%; /* Define um raio de borda de 50% para criar um círculo */
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: 20px;
-}
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Isso faz com que a imagem preencha o espaço mantendo sua proporção */
+  }
 
 /* Estilo dos detalhes do usuário */
 .user-details {
