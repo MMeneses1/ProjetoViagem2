@@ -16,9 +16,10 @@
 
                 <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
                 @if(Auth::user()->foto_perfil)
-                    <p><strong>Foto de Perfil:</strong></p>
-                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
-                @endif
+    <div class="profile-picture">
+        <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="profile-image">
+    </div>
+@endif
 
                 <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
                 <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
