@@ -13,10 +13,10 @@
 
         <nav class="navbar header">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../../images/bussola.png" width="30" height="24" class="d-inline-block align-text-top">
-                    Tripster
-                </a>
+            <a class="navbar-brand" href="login">
+                <img src="{{ asset('images/bussola.png') }}" width="30" height="24" alt="Bússola" class="d-inline-block align-text-top">
+                Tripster
+            </a>
             </div>
         </nav>
 
