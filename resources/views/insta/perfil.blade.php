@@ -9,7 +9,7 @@
 <body class="text-center">
     <div class="container-fluid mx-auto">
         <div class="row">
-            <a href="{{ route('login') }}" class="btn btn-primary">Ir para o Início</a>
+            <a href="{{ route('feed') }}" class="btn btn-primary">Ir para o Início</a>
             
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -23,10 +23,10 @@
 
     <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
     @if(Auth::user()->foto_perfil)
-        <div class="profile-picture">
-            <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil">
-        </div>
-    @endif
+    <div class="profile-picture">
+        <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="profile-image">
+    </div>
+@endif
 
     <div class="profile-info">
     <p><strong>Nome de Usuário:</strong> {{Auth::user()->username}} </p>
