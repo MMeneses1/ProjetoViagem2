@@ -7,7 +7,7 @@
             <div class = "col-md-12">
                 <h1 class = "titulolanding">Te levando para os melhores lugares</h1>
                 <p class = "paragrafolanding">Comece a sua jornada</p>
-                <img class = "iconelanding" href = "formulario" src="./seta.png">
+                <img class = "iconelanding" href = "formulario" src="{{ asset('images/seta.png') }}">
             </div>
         </div>
 
@@ -64,11 +64,11 @@
                     <!-- <label class="form-label" for="telefone">Telefone:</label>
                     <input class="form-control" type="text" id="telefone" name="telefone" value="{{ old('telefone') }}" placeholder = "(99) 99999-9999">-->
                     
-                    <label class="form-label" for="pais">País:</label>
+                    <!-- <label class="form-label" for="pais">País:</label>
                     <input class="form-control" type="text" id="pais" name="pais" value="{{ old('pais') }}">
                     
                     <label class="form-label" for="foto_perfil">Foto de Perfil:</label>
-                    <input class="form-control" type="file" id="foto_perfil" name="foto_perfil">
+                    <input class="form-control" type="file" id="foto_perfil" name="foto_perfil">-->
                     
                     <p>
                         Ao se cadastrar você confirma que concorda com os Termos de Condição do site.
