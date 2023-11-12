@@ -1,4 +1,4 @@
-@extends('layouts.template1')
+@extends('layouts.header')
 @section('titulo', 'Cadastre-se')
 @section('css', '/css/register.css')
 @section('conteudo')
@@ -7,14 +7,16 @@
             <div class = "col-md-12">
                 <h1 class = "titulolanding">Te levando para os melhores lugares</h1>
                 <p class = "paragrafolanding">Comece a sua jornada</p>
-                <img class = "iconelanding" href = "formulario" src="{{ asset('images/seta.png') }}">
+                <a href="#formulario">
+                    <img class="iconelanding" src="{{ asset('images/seta.png') }}">
+                </a>
             </div>
         </div>
 
         <div class = "row">
             <div class = "col-md-6"></div>
             <div class = "col-md-5">
-            <form action="{{ route('register') }}" name = "formulario" method="post" enctype="multipart/form-data" class="formregister needs-validation" novalidate> <!-- Adicione 'enctype' para lidar com o upload de arquivos -->
+            <form action="{{ route('register') }}" id = "formulario" name = "formulario" method="post" enctype="multipart/form-data" class="formregister needs-validation" novalidate> <!-- Adicione 'enctype' para lidar com o upload de arquivos -->
                 {{ csrf_field() }}
                     
                     <label class="form-label" for="email">E-mail:</label>
