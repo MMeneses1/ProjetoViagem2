@@ -11,6 +11,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Bem-vindo ao Início</h1>
+                <form action="{{ route('pesquisa') }}" method="GET">
+    <input type="text" name="query" placeholder="Pesquisar por nome ou username">
+    <button type="submit">Pesquisar</button>
+</form>
+
                 <div class="links">
                     <a href="{{ route('perfil') }}">Ver Perfil</a> | <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
                 </div>
@@ -51,7 +56,7 @@
                 <div class="post-container">
                     <div class="post-header">
                         <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
-                        <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
+                        <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a></p>
                     </div>
 
                     <!-- Verifique se a postagem pertence ao usuário autenticado -->
@@ -86,7 +91,7 @@
                             <li class="comment-item">
                                 <div class="comment-header">
                                     <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
-                                    <p><strong>Usuário:</strong> {{ $comment->user->username }}</p>
+                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a></p>
                                 </div>
                                 <p class="comment-text">{{ $comment->text }}</p>
 
