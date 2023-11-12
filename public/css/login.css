@@ -1,7 +1,3 @@
-body{
-    font-family: 'Montserrat';
-}
-
 .container-fluid{
     background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/10055945-vector-landscape-with-fog-of-green-mountain-eps-file-gratis-vetor.jpg');
     background-size: cover;
@@ -9,12 +5,6 @@ body{
     background-position: center;
     height: 100vh;
     padding-top: 7%;
-}
-
-.header a{
-    color: white;
-    position: fixed;
-    top: 0;
 }
 
 .login{

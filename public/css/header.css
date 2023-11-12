@@ -1,0 +1,12 @@
+body{
+    font-family: 'Montserrat';
+}
+
+.header a{
+    position: fixed;
+    top: 0;
+}
+
+.navbar-brand{
+    font-weight: bold;
+}
