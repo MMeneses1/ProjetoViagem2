@@ -1,0 +1,47 @@
+body{
+    font-family: 'Montserrat';
+}
+
+.container-fluid{
+    background-color: #F4F0F0;
+}
+
+.nav{
+    top: 15%;
+    position: fixed;
+}
+  
+.nav-link {
+    color: black !important;
+}
+  
+.nav-link:hover{
+    color: #204028 !important;
+    text-decoration: underline;
+}
+  
+.nav-link img{
+    width: 20px;
+}
+
+.navbar-brand{
+    font-weight: bold;
+}
+  
+.input-group .form-control{
+    width: 50%;
+}
+  
+.botaopesquisar{
+    width: 15px;
+}
+  
+.fotoperfil{
+    border-radius: 50%;
+    height: 20px;
+    object-fit: cover;
+}
+
+textarea{
+    resize: none !important;
+}
