@@ -1,8 +1,4 @@
 /* CADASTRO - REGISTER.BLADE.PHP */
-
-body{
-    font-family: 'Montserrat';
-}
 .container-fluid{
     background-image: url('https://images8.alphacoders.com/101/1015192.jpg');
     background-size: cover;
@@ -10,16 +6,17 @@ body{
     background-position: center;
 }
 
-.header a{
+.header a, .landingpage, .formregister .btn{
     color: white;
-    position: fixed;
-    top: 0;
+    color: white;
+}
+
+.landingpage{
+    text-align: center;
 }
 
 .titulolanding{
     font-size: 4rem;
-    color: white;
-    text-align: center;
     text-shadow: 2px 2px 4px #204028;
     font-weight: 1000;
     padding: 15% 15% 10% 15%;
@@ -33,6 +30,8 @@ body{
 
 .iconelanding{
     animation: pulsar 1s infinite alternate;
+    width: 2%;
+    margin-bottom: 3%;
 }
 
 @keyframes pulsar {
@@ -62,7 +61,6 @@ body{
 
 .formregister .btn{
     background-color: #204028;
-    color: white;
     align-items: center;
     width: 100%;
 }
