@@ -21,7 +21,7 @@
             <div class="col-lg-12 mx-auto text-center">
     <h1>Seu Perfil</h1>
 
-    <!-- Verifique se você está armazenando a foto de perfil no sistema de arquivos e tem um caminho para ela -->
+   
     @if(Auth::user()->foto_perfil)
     <div class="profile-picture">
         <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="profile-image">
@@ -86,7 +86,7 @@
                             <div class="post-container">
                                 <div class="post-header">
                                     <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
-                                    <p><strong>Usuário:</strong> {{ $post->user->username }}</p>
+                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a></p>
                                 </div>
 
                                 <!-- Verifique se a postagem pertence ao usuário autenticado -->
@@ -122,7 +122,7 @@
                                             <li class="comment-item">
                                                 <div class="comment-header">
                                                     <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
-                                                    <p><strong>Usuário:</strong> {{ $comment->user->username }}</p>
+                                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a></p>
                                                 </div>
                                                 <p class="comment-text">{{ $comment->text }}</p>
 
