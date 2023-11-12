@@ -1,0 +1,26 @@
+.formularioeditar{
+    background-color: #F4FFF7;
+    padding: 5%;
+    margin: 5%;
+}
+
+input{
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin-bottom: 2%;
+}
+
+label{
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.btn{
+    margin-top: 5%;
+}
+
+.btn:hover{
+    background-color: rgb(105, 240, 59) !important;
+    color: black;
+    border: 1px solid rgb(105, 240, 59) !important;
+}
