@@ -144,5 +144,34 @@ public function showDados()
     }
 }
 
+public function showOtherUserProfile($username)
+{
+    $otherUser = User::where('username', $username)->first();
+
+    if (!$otherUser) {
+        // Usuário não encontrado
+        return redirect()->route('feed')->with('error', 'Usuário não encontrado.');
+    }
+
+    $posts = Post::where('user_id', $otherUser->id)->orderByDesc('created_at')->get();
+
+    return view('insta.perfil-outro', compact('otherUser', 'posts'));
+}
+
+public function pesquisar(Request $request)
+{
+    $query = $request->input('query');
+
+    $resultados = User::where('nome', 'like', "%$query%")
+                      ->orWhere('username', 'like', "%$query%")
+                      ->get();
+
+    return view('insta.pesquisa', compact('resultados', 'query'));
+}
+
+
+
 
 }
+
+
