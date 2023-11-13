@@ -56,10 +56,12 @@
             <div class = "col-md-3">
                 <h3>Tripsters</h3>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Digite um nome ou usuário" aria-label="Recipient's username" aria-describedby="pesquisar">
-                    <button class="btn" type="button" id="pesquisar">
-                        <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
-                    </button>
+                    <form action="{{ route('pesquisa') }}" method="GET" class = "formulariopesquisar">
+                        <input type="text" class="form-control" name = "query" placeholder="Nome ou usuário" aria-label="Recipient's username" aria-describedby="pesquisar">
+                        <button class="btn" type="submit" id="pesquisar">
+                            <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

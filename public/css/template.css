@@ -27,11 +27,11 @@ body{
 .navbar-brand{
     font-weight: bold;
 }
-  
-.input-group .form-control{
-    width: 50%;
+
+.formulariopesquisar{
+    display: flex;
 }
-  
+
 .botaopesquisar{
     width: 15px;
 }
