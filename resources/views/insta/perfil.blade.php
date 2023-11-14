@@ -167,10 +167,14 @@
                     @endforeach
                 </ul>
 
-                <form action="{{ route('perfil', ['loadedPosts' => $loadedPosts + 5]) }}" method="GET" id="loadMoreForm">
-        @csrf
-        <button type="submit" class="btn btn-primary">Carregar Mais</button>
-        </form>
+                <form action="{{ route('perfil') }}" method="GET" id="loadMoreForm">
+    @csrf
+    <input type="hidden" name="loadedPosts" value="{{ $loadedPosts + 5 }}">
+    <button type="submit" class="btn btn-primary">Carregar Mais</button>
+</form>
+
+
+
 
             @else
                 <p>Nenhuma postagem encontrada.</p>

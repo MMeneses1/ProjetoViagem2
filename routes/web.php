@@ -17,18 +17,18 @@ Route::post('/signup', [MVPController::class, 'register'])->name('register');
 
 Route::middleware('auth')->group(function () {
     // Rotas protegidas por autenticação
+    
+Route::get('/perfil', [MVPController::class, 'showProfile'])->name('perfil');
+Route::post('/perfilpessoal', [MVPController::class, 'updateDados'])->name('perfilpessoal.update');
+Route::post('/logout', [MVPController::class, 'logout'])->name('logout');
+Route::get('/perfil/editar', [MVPController::class, 'showProfileEditForm'])->name('insta.perfiledit');
+Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
+Route::get('/perfil/{username?}', [MVPController::class, 'showOtherUserProfile'])->name('perfil.outro');
+Route::get('/perfil/{loadedPosts?}', [MVPController::class, 'showProfile'])->name('perfil');
 
-    Route::get('/perfil', [MVPController::class, 'showProfile'])->name('perfil');
-    Route::get('/perfilpessoal', [MVPController::class, 'showDados'])->name('perfilpessoal');
-    Route::post('/perfilpessoal', [MVPController::class, 'updateDados'])->name('perfilpessoal.update');
-    Route::post('/logout', [MVPController::class, 'logout'])->name('logout');
-    Route::get('/perfil/editar', [MVPController::class, 'showProfileEditForm'])->name('insta.perfiledit');
-    Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
-    Route::get('/perfil/{loadedPosts?}', [MVPController::class, 'showProfile'])->name('perfil');
 
 
-    // Rota perfil.outro agora aceita {username} como parâmetro opcional
-    Route::get('/perfil/{username?}', [MVPController::class, 'showOtherUserProfile'])->name('perfil.outro');
+  
 
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.delete');

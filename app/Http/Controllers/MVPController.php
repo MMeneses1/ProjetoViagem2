@@ -78,12 +78,14 @@ class MVPController extends Controller
         }
     }
 
-    public function showProfile($loadedPosts = 5)
+    public function showProfile(Request $request)
 {
     $user = Auth::user();
     $followersCount = $user->followers()->count();
     $followingCount = $user->following()->count();
-    
+
+    $loadedPosts = $request->input('loadedPosts', 5); // Defina o valor padrão como 5 se não houver valor
+
     $posts = Post::where('user_id', $user->id)
                  ->orderByDesc('created_at')
                  ->skip(0) // Pule os posts já carregados
