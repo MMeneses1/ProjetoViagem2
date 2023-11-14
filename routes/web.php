@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
     Route::get('/feed', [InicioController::class, 'index'])->name('feed');
+    Route::get('/feed/{loadedPosts?}', [InicioController::class, 'index'])->name('feed');
+    Route::get('/load-more-posts/{loadedPosts}', [InicioController::class, 'loadMorePosts'])->name('load.more.posts');
+
+
     
     Route::get('/pesquisa', [MVPController::class, 'pesquisar'])->name('pesquisa');
 

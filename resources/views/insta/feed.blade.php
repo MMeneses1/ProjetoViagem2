@@ -15,13 +15,13 @@
     </form>
 
     @if(!$noPosts)
-    <ul role = "list" class="postslista">
+    <ul role="list" class="postslista">
         @foreach($posts->sortByDesc('created_at') as $post)
             <li class="postitem">
                 <div class="conteudopost">
                     <div class="card post">
                         <div class="card-header">
-                            <span class = "userpost">
+                            <span class="userpost">
                                 @if(Auth::user()->foto_perfil)
                                     <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                 @endif
@@ -35,7 +35,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn">
-                                        <img class = "excluirpost" src="{{ asset('images/lixeira.png') }}"/>
+                                        <img class="excluirpost" src="{{ asset('images/lixeira.png') }}"/>
                                     </button>
                                 </form>
                             @endif
@@ -106,6 +106,15 @@
             <hr/>
         @endforeach
     </ul>
+
+    <!-- Adicione o formulário para carregar mais posts -->
+    <form action="{{ route('load.more.posts', ['loadedPosts' => $loadedPosts]) }}" method="GET" id="loadMoreForm">
+    @csrf
+    <button type="submit" class="btn btn-primary">Carregar Mais</button>
+</form>
+
+
+
 @else
     <p>Nenhuma postagem foi encontrada.</p>
 @endif

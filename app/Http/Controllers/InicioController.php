@@ -6,14 +6,24 @@ use App\Models\Post;
 
 class InicioController extends Controller
 {
-    public function index()
-    {
-        // Adicione qualquer lógica que você precise para obter os posts ou outros dados aqui
-        $posts = Post::all(); // Substitua isso pela forma como você obtém seus posts
+    public function index($loadedPosts = 5)
+{
+    $posts = Post::latest()->take($loadedPosts)->get();
 
-        return view('insta.feed', [
-            'posts' => $posts,
-            'noPosts' => $posts->isEmpty(),
-        ]);
+    return view('insta.feed', [
+        'posts' => $posts,
+        'noPosts' => $posts->isEmpty(),
+        'loadedPosts' => $loadedPosts,
+    ]);
+}
+
+public function loadMorePosts($loadedPosts)
+    {
+        // Atualize a variável $loadedPosts conforme necessário
+        // e redirecione de volta para a página de feed
+        $updatedLoadedPosts = $loadedPosts + 5;
+
+        return redirect()->route('feed', ['loadedPosts' => $updatedLoadedPosts]);
     }
+
 }
