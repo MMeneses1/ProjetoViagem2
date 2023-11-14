@@ -12,11 +12,11 @@
         <p>Encontrado(s) {{ $resultados->count() }} usuário(s) com o nome "{{ $query }}".</p>
         <ul>
             @foreach($resultados as $usuario)
-                <li>
-                    <a href="{{ route('perfil.outro', ['username' => $usuario->username]) }}">
-                        {{ $usuario->nome }} ({{ $usuario->username }})
-                    </a>
-                </li>
+            <li>
+    <a href="{{ Auth::user()->username == $usuario->username ? route('perfil') : route('perfil.outro', ['username' => $usuario->username]) }}">
+        {{ $usuario->nome }} ({{ $usuario->username }})
+    </a>
+</li>
             @endforeach
         </ul>
 

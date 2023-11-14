@@ -21,12 +21,17 @@
                 <div class="conteudopost">
                     <div class="card post">
                         <div class="card-header">
-                            <span class="userpost">
-                                @if(Auth::user()->foto_perfil)
-                                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                @endif
-                                {{ $post->user->username }} • {{ $post->created_at->diffForHumans() }}
-                            </span>
+                        <span class="userpost">
+    @if(Auth::user()->foto_perfil)
+        <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+    @endif
+    @if(Auth::user()->username == $post->user->username)
+        <a href="{{ route('perfil') }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+    @else
+        <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+    @endif
+</span>
+
 
                             <!-- Verifique se a postagem pertence ao usuário autenticado -->
                             @if(Auth::user()->id === $post->user->id)
@@ -72,12 +77,17 @@
                             <li class="comentarioitem">
                                 <div class="card comentario">
                                     <div class="card-header">
-                                        <span>
-                                            @if(Auth::user()->foto_perfil)
-                                                <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                            @endif
-                                            {{ $comment->user->username }} • {{ $comment->created_at->diffForHumans() }}
-                                        </span>
+                                    <span>
+    @if(Auth::user()->foto_perfil)
+        <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+    @endif
+    @if(Auth::user()->username == $comment->user->username)
+        <a href="{{ route('perfil') }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
+    @else
+        <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
+    @endif
+</span>
+
                                         
                                         <!-- Botão de exclusão de comentário -->
                                         @if(Auth::check() && (Auth::user()->id === $comment->user->id || Auth::user()->id === $post->user->id))

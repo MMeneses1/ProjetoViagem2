@@ -92,10 +92,16 @@
                         <li class="post-item">
                             <!-- Exiba o nome do usuário e a data da postagem -->
                             <div class="post-container">
-                                <div class="post-header">
-                                    <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
-                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a></p>
-                                </div>
+                            <div class="post-header">
+    <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
+    <p><strong>Usuário:</strong> 
+        @if(Auth::user()->username == $post->user->username)
+            <a href="{{ route('perfil') }}">{{ $post->user->username }}</a>
+        @else
+            <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a>
+        @endif
+    </p>
+</div>
 
                                 <!-- Verifique se a postagem pertence ao usuário autenticado -->
                                 @if(Auth::user()->id === $post->user->id)
@@ -128,10 +134,16 @@
                                     <ul class="comment-list">
                                         @foreach($post->comments->sortByDesc('created_at') as $comment)
                                             <li class="comment-item">
-                                                <div class="comment-header">
-                                                    <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
-                                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a></p>
-                                                </div>
+                                            <div class="comment-header">
+    <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
+    <p><strong>Usuário:</strong> 
+        @if(Auth::user()->username == $comment->user->username)
+            <a href="{{ route('perfil') }}">{{ $comment->user->username }}</a>
+        @else
+            <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a>
+        @endif
+    </p>
+</div>
                                                 <p class="comment-text">{{ $comment->text }}</p>
 
                                                 <!-- Botão de exclusão de comentário -->
