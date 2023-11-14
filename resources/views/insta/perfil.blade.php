@@ -15,7 +15,7 @@
                     @csrf
                 </form>
             </div>
-            <a href="{{ route('perfilpessoal') }}" class="btn btn-primary">Editar Perfil</a>
+            <a href="{{ route('insta.perfiledit') }}" class="btn btn-primary">Editar Perfil</a>
             <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></p>
 
             <div class="col-lg-12 mx-auto text-center">

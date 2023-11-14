@@ -25,12 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/perfil/editar', [MVPController::class, 'showProfileEditForm'])->name('insta.perfiledit');
     Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
 
-<<<<<<< Updated upstream
-    Route::get('/perfil/{username}', [MVPController::class, 'showOtherUserProfile'])->name('perfil.outro');
-=======
     // Rota perfil.outro agora aceita {username} como parâmetro opcional
     Route::get('/perfil/{username?}', [MVPController::class, 'showOtherUserProfile'])->name('perfil.outro');
->>>>>>> Stashed changes
 
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.delete');

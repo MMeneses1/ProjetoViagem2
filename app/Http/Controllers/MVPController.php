@@ -171,10 +171,6 @@ public function pesquisar(Request $request)
     return view('insta.pesquisa', compact('resultados', 'query'));
 }
 
-<<<<<<< Updated upstream
-
-
-=======
 public function pesquisarAoDigitar(Request $request)
 {
     $query = $request->input('query');
@@ -234,7 +230,6 @@ public function getFollowing()
     return response()->json(['following' => $following]);
 }
 
->>>>>>> Stashed changes
 
 }
 
