@@ -19,6 +19,8 @@
                 </li>
             @endforeach
         </ul>
+
+
     @else
         <p>Nenhum usuário encontrado.</p>
     @endif

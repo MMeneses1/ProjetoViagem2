@@ -78,15 +78,21 @@ class MVPController extends Controller
         }
     }
 
-    public function showProfile()
+    public function showProfile($loadedPosts = 5)
 {
     $user = Auth::user();
     $followersCount = $user->followers()->count();
     $followingCount = $user->following()->count();
-    $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
-    $noPosts = $posts->isEmpty(); // Verifique se não há postagens
+    
+    $posts = Post::where('user_id', $user->id)
+                 ->orderByDesc('created_at')
+                 ->skip(0) // Pule os posts já carregados
+                 ->take($loadedPosts) // Carregue mais posts
+                 ->get();
 
-    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount'));
+    $noPosts = $posts->isEmpty();
+
+    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount', 'loadedPosts'));
 }
 
 public function showDados()
