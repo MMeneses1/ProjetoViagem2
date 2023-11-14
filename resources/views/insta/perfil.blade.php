@@ -30,6 +30,14 @@
 
     <div class="profile-info">
     <p><strong>Nome de Usuário:</strong> {{Auth::user()->username}} </p>
+
+    <!-- Adicione este botão onde desejar -->
+<button id="mostrarSeguidores">Seguidores: {{ $followersCount }}</button>
+
+
+<!-- Adicione este botão onde desejar -->
+<button id="mostrarSeguindo">Seguindo  {{ $followingCount }} </button>
+
     
     <div class="user-details">
     <p><strong>Nome:</strong> {{ Auth::user()->nome }}</p>
@@ -163,5 +171,63 @@
             @endif
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Função para criar e exibir o modal com base nos dados
+        function exibirModal(title, userList) {
+            var modalContent = `<div class="modal">
+                                    <span class="fecharModal">&times;</span>
+                                    <h2>${title}</h2>
+                                    <ul>`;
+            
+            userList.forEach(function (user) {
+                modalContent += `<li><a href="{{ route("perfil.outro", ["username" => ""]) }}/${user.username}">${user.username}</a></li>`;
+            });
+
+            modalContent += `</ul></div>`;
+
+            $('body').append(modalContent);
+
+            // Adicione um evento de clique ao botão de fechar o modal
+            $('.fecharModal').on('click', function () {
+                $('.modal').remove(); // Remova o modal ao fechar
+            });
+        }
+
+        // Evento de clique no botão Seguidores
+        $('#mostrarSeguidores').on('click', function () {
+            // Faça uma requisição AJAX para obter a lista de seguidores
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("get.followers") }}', // Substitua pelo nome correto da sua rota
+                success: function (data) {
+                    // Exiba os dados em um modal
+                    exibirModal('Seguidores', data.followers);
+                },
+                error: function (error) {
+                    console.error('Erro ao obter a lista de seguidores:', error);
+                }
+            });
+        });
+
+        // Evento de clique no botão Seguindo
+        $('#mostrarSeguindo').on('click', function () {
+            // Faça uma requisição AJAX para obter a lista de usuários que você está seguindo
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("get.following") }}', // Substitua pelo nome correto da sua rota
+                success: function (data) {
+                    // Exiba os dados em um modal
+                    exibirModal('Seguindo', data.following);
+                },
+                error: function (error) {
+                    console.error('Erro ao obter a lista de seguindo:', error);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

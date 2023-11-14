@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @extends('layouts.template-inside')
 @section('titulo', 'Página Inicial')
 @section('css', '/css/feed.css')
@@ -8,6 +9,43 @@
         <div class="form-group">
             <textarea id="content" name="content" rows = '5' class="form-control" placeholder="Digite o texto da sua publicação" required></textarea>
             <input class="form-control-file" type="file" id="image" name="image">
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início</title>
+    <link rel="stylesheet" href="/css/inicio.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Bem-vindo ao Início</h1>
+
+                <!-- Formulário de Pesquisa -->
+                <form action="{{ route('pesquisa') }}" method="GET">
+                    <input type="text" id="campoPesquisa" name="query" placeholder="Pesquisar por nome ou username">
+                    <button type="submit" id="pesquisarBtn" disabled>Pesquisar</button>
+                </form>
+                <!-- Div para Exibir Sugestões de Nomes -->
+                <div id="sugestoesPesquisa"></div>
+
+                <!-- Outros Elementos do Cabeçalho -->
+                <div class="links">
+                    <a href="{{ route('perfil') }}">Ver Perfil</a> | <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+>>>>>>> Stashed changes
         </div>
 
         <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
@@ -17,6 +55,7 @@
     @if(!$noPosts)
     <ul role = "list" class="postslista">
         @foreach($posts->sortByDesc('created_at') as $post)
+<<<<<<< Updated upstream
             <li class="postitem">
                 <div class="conteudopost">
                     <div class="card post">
@@ -27,6 +66,14 @@
                                 @endif
                                 {{ $post->user->username }} • {{ $post->created_at->diffForHumans() }}
                             </span>
+=======
+            <li class="post-item">
+                <div class="post-container">
+                    <div class="post-header">
+                        <p><strong>Data da Postagem:</strong> {{ $post->created_at->diffForHumans() }}</p>
+                        <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a></p>
+                    </div>
+>>>>>>> Stashed changes
 
                             <!-- Verifique se a postagem pertence ao usuário autenticado -->
                             @if(Auth::user()->id === $post->user->id)
@@ -69,6 +116,7 @@
                     </form>
                     <ul role = "list" class="comentarioslista">
                         @foreach($post->comments->sortByDesc('created_at') as $comment)
+<<<<<<< Updated upstream
                             <li class="comentarioitem">
                                 <div class="card comentario">
                                     <div class="card-header">
@@ -97,6 +145,12 @@
                                             <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário" class="comentarioimagem">
                                         @endif
                                     </div>
+=======
+                            <li class="comment-item">
+                                <div class="comment-header">
+                                    <p><strong>Data do Comentário:</strong> {{ $comment->created_at->diffForHumans() }}</p>
+                                    <p><strong>Usuário:</strong> <a href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a></p>
+>>>>>>> Stashed changes
                                 </div>
                             </li>
                         @endforeach
@@ -110,6 +164,7 @@
     <p>Nenhuma postagem foi encontrada.</p>
 @endif
 
+<<<<<<< Updated upstream
         <!-- Adicione o campo para a legenda da foto 
         <div class="form-group">
             <label for="caption">Legenda da Foto:</label>
@@ -117,3 +172,59 @@
         </div> -->
 
 @endsection
+=======
+<script>
+    $(document).ready(function () {
+        var campoPesquisa = $('#campoPesquisa');
+        var pesquisarBtn = $('#pesquisarBtn');
+        var sugestoesPesquisa = $('#sugestoesPesquisa');
+
+        campoPesquisa.autocomplete({
+            source: function (request, response) {
+                // Faça a chamada AJAX para obter os resultados
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("pesquisa.ao.digitar") }}',
+                    data: { query: request.term },
+                    success: function (resultados) {
+                        // Mapeie os resultados para o formato esperado pelo Autocomplete
+                        var sugestoes = $.map(resultados, function (usuario) {
+                            return {
+                                label: usuario.nome + ' (' + usuario.username + ')',
+                                value: usuario.username
+                            };
+                        });
+
+                        // Forneça as sugestões para o Autocomplete
+                        response(sugestoes);
+                    },
+                    error: function (error) {
+                        console.error('Erro na chamada AJAX: ', error);
+                    }
+                });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                // Verifique se o usuário autenticado está acessando o próprio perfil
+                if ('{{ auth()->user()->username }}' !== ui.item.value) {
+                    // Redirecione para o perfil do usuário ao selecionar uma sugestão
+                    window.location.href = '{{ route("perfil.outro", ["username" => ""]) }}/' + ui.item.value;
+                } else {
+                    // Se for o próprio usuário, redirecione para o perfil.blade.php
+                    window.location.href = '{{ route("perfil") }}';
+                }
+            }
+        });
+
+        campoPesquisa.on('input', function () {
+            // Habilitar ou desabilitar o botão com base no comprimento do texto
+            pesquisarBtn.prop('disabled', campoPesquisa.val().trim().length === 0);
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
+>>>>>>> Stashed changes
