@@ -81,10 +81,12 @@ class MVPController extends Controller
     public function showProfile()
 {
     $user = Auth::user();
+    $followersCount = $user->followers()->count();
+    $followingCount = $user->following()->count();
     $posts = Post::where('user_id', $user->id)->orderByDesc('created_at')->get();
     $noPosts = $posts->isEmpty(); // Verifique se não há postagens
 
-    return view('insta.perfil', compact('user', 'posts', 'noPosts'));
+    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount'));
 }
 
 public function showDados()
@@ -169,8 +171,70 @@ public function pesquisar(Request $request)
     return view('insta.pesquisa', compact('resultados', 'query'));
 }
 
+<<<<<<< Updated upstream
 
 
+=======
+public function pesquisarAoDigitar(Request $request)
+{
+    $query = $request->input('query');
+
+    $resultados = User::where('nome', 'like', "%$query%")
+                      ->orWhere('username', 'like', "%$query%")
+                      ->limit(5) // Limita o número de resultados retornados
+                      ->get();
+
+    return response()->json($resultados);
+}
+
+
+public function followUser($username)
+{
+    $userToFollow = User::where('username', $username)->first();
+
+    if (!$userToFollow) {
+        // Usuário não encontrado
+        return redirect()->back()->with('error', 'Usuário não encontrado.');
+    }
+
+    auth()->user()->following()->attach($userToFollow);
+
+    return redirect()->back()->with('success', 'Agora você está seguindo ' . $userToFollow->username);
+}
+
+public function unfollowUser($username)
+{
+    $userToUnfollow = User::where('username', $username)->first();
+
+    if (!$userToUnfollow) {
+        // Usuário não encontrado
+        return redirect()->back()->with('error', 'Usuário não encontrado.');
+    }
+
+    auth()->user()->following()->detach($userToUnfollow);
+
+    return redirect()->back()->with('success', 'Você não está mais seguindo ' . $userToUnfollow->username);
+}
+
+// Adicione este método
+public function getFollowers()
+{
+    $user = auth()->user();
+    $followers = $user->followers;
+
+    return response()->json(['followers' => $followers]);
+}
+
+// Adicione este método
+public function getFollowing()
+{
+    $user = auth()->user();
+    $following = $user->following;
+
+    return response()->json(['following' => $following]);
+}
+
+>>>>>>> Stashed changes
 
 }
 
