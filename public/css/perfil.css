@@ -1,11 +1,198 @@
-/* Estilos gerais da página */
+/* Estilo dos detalhes do perfil */
+.profilepicture {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .profileimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+
+.profileinfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.userdetails{
+    margin-left: 2%;
+}
+
+.info{
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.seminfo{
+    margin: 0;
+    font-size: 1rem;
+    color: gray;
+    font-style: italic;
+}
+
+.quantidade:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Estilização do feed*/
+
+.perfilfeed{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.formulariopost, .formulariocomentario{
+    background-color: #F4FFF7;
+    padding: 2%;
+}
+
+.postslista, .comentarioslista{
+    list-style-type: none;
+    padding: 0;
+}
+
+.linkperfil{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.linkperfil:hover{
+    text-decoration: underline;
+    color: rgb(145, 203, 145);
+}
+
+/*Estilização dos posts*/
+
+.formulariopost{
+    margin-bottom: 3%;
+}
+
+.criarpost{
+    margin-top: 2%;
+}
+
+.criarpost:hover{
+    background-color: rgb(105, 240, 59) !important;
+    color: black;
+    border: 1px solid rgb(105, 240, 59) !important;
+}
+
+.post{
+    background-color: #F4FFF7 !important;
+    margin-bottom: 1%;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.excluirpost{
+    width: 20px;
+}
+
+.conteudopost{
+    min-width: 60%;
+    max-width: 100%;
+}
+
+.textopost{
+    font-size: 1.2rem;
+}
+
+.imagempost img{
+    max-width: 500px;
+}
+
+.imagempost{
+    text-align: center;
+}
+
+/*Estilização dos comentários*/
+
+.formulariocomentario{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.comentarioslista{
+    padding: 2%;
+    background-color: #F4FFF7;
+}
+
+#comment{
+    flex-grow: 1;
+    width: 200% !important;
+}
+
+.groupcomentario {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+}
+
+.comentario{
+    border: none !important;
+    padding-bottom: 1%;
+}
+
+.comentarioimagem{
+    max-width: 200px;
+}
+
+.inputfile{
+    display: none;
+}
+
+.selecionarimagem{
+    width: 20%;
+    margin: 10px;
+}
+
+.comentarioslista{
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+/* largura da barra de rolagem */
+.comentarioslista::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+  
+/* customizar a barrinha da barra de rolagem */
+.comentarioslista::-webkit-scrollbar-thumb {
+    background-color: lightgrey;
+    border-radius: 20px;
+}
+
+/* ANTERIOR
+
+.userdetails {
+    display: flex;
+    justify-content: space-between;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f0f0f0; /* Cor de fundo de exemplo */
+    background-color: #f0f0f0; 
 }
 
 .container-fluid {
@@ -13,7 +200,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 1500px; /* Define a largura máxima do conteúdo */
+    max-width: 1500px; 
 }
 
 h2 {
@@ -21,7 +208,6 @@ h2 {
     margin-bottom: 10px;
 }
 
-/* Estilos dos posts */
 .post-item {
     margin-bottom: 20px;
     padding: 10px;
@@ -41,13 +227,12 @@ h2 {
 }
 
 .post-image {
-    max-width: 100%; /* A imagem não será maior que a largura da caixa */
-    height: auto; /* A altura se ajustará automaticamente para manter a proporção */
-    display: block; /* Corrige um pequeno espaço extra na parte inferior da imagem */
-    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+    max-width: 100%;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
 }
 
-/* Estilos dos comentários */
 .comment-box {
     margin-top: 20px;
     padding: 10px;
@@ -55,8 +240,8 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    max-height: 300px; /* Altura máxima com barra de rolagem */
-    overflow-y: auto; /* Adicionar barra de rolagem vertical quando necessário */
+    max-height: 300px;
+    overflow-y: auto;
     
 }
 
@@ -84,9 +269,8 @@ h2 {
 }
 
 
-/* Estilo do formulário de post */
 .post-form {
-    max-width: 50%; /* Alterado para 50% para ocupar metade da largura */
+    max-width: 50%; 
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -123,34 +307,13 @@ h2 {
     background-color: #0056b3;
 }
 
-/* Estilo da caixa separada */
+
 .form-container {
-    max-width: 50%; /* Alterado para 50% para ocupar metade da largura */
+    max-width: 50%; 
     margin: 20px auto;
     padding: 20px;
     background-color: #f0f0f0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
-/* Estilo da foto de perfil */
-.profile-picture {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%; /* Define um raio de borda de 50% para criar um círculo */
-    overflow: hidden;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
-
-  .profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Isso faz com que a imagem preencha o espaço mantendo sua proporção */
-  }
-
-/* Estilo dos detalhes do usuário */
-.user-details {
-    display: flex;
-    justify-content: space-between;
-}
+/*

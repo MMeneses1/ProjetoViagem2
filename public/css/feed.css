@@ -1,11 +1,38 @@
+.perfilfeed{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .formulariopost, .formulariocomentario{
     background-color: #F4FFF7;
-    padding: 5%;
-    border-radius: 2%;
+    padding: 2%;
+}
+
+.postslista, .comentarioslista{
+    list-style-type: none;
+    padding: 0;
+}
+
+.linkperfil{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.linkperfil:hover{
+    text-decoration: underline;
+    color: rgb(145, 203, 145);
+}
+
+/*Estilização dos posts*/
+
+.formulariopost{
     margin-bottom: 3%;
 }
 
-.criarpost, .form-control-file, .comentarpost{
+.criarpost{
     margin-top: 2%;
 }
 
@@ -15,14 +42,28 @@
     border: 1px solid rgb(105, 240, 59) !important;
 }
 
-.postslista, .comentarioslista{
-    list-style-type: none;
-    padding: 0;
+.post{
+    background-color: #F4FFF7 !important;
+    margin-bottom: 1%;
 }
 
-.conteupost{
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.excluirpost{
+    width: 20px;
+}
+
+.conteudopost{
     min-width: 60%;
     max-width: 100%;
+}
+
+.textopost{
+    font-size: 1.2rem;
 }
 
 .imagempost img{
@@ -33,44 +74,63 @@
     text-align: center;
 }
 
-.excluirpost{
-    width: 20px;
-}
+/*Estilização dos comentários*/
 
-.post, .comentario{
-    background-color: #F4FFF7 !important;
-    margin-bottom: 1%;
-}
-
-.card-header{
+.formulariocomentario{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+}
+
+.comentarioslista{
+    padding: 2%;
+    background-color: #F4FFF7;
+}
+
+#comment{
+    flex-grow: 1;
+    width: 200% !important;
+}
+
+.groupcomentario {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
 }
 
 .comentario{
     border: none !important;
-}
-
-.comentarioslista{
-    padding: 0 3% 0 3%;
-}
-
-.comentarioitem{
-    margin-top: 2%;
+    padding-bottom: 1%;
 }
 
 .comentarioimagem{
     max-width: 200px;
 }
 
-.perfilfeed{
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    border-radius: 50%;
+.inputfile{
+    display: none;
 }
 
-.textopost{
-    font-size: 1.2rem;
+.selecionarimagem{
+    width: 20%;
+    margin: 10px;
+}
+
+.comentarioslista{
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+/* largura da barra de rolagem */
+.comentarioslista::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+  
+/* customizar a barrinha da barra de rolagem */
+.comentarioslista::-webkit-scrollbar-thumb {
+    background-color: lightgrey;
+    border-radius: 20px;
 }
