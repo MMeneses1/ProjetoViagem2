@@ -72,9 +72,9 @@ class MVPController extends Controller
         ]);
 
         if ($usuario->save()) {
-            return redirect()->route('login')->with('success', 'Registro realizado com sucesso!');
+            return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
         } else {
-            return back()->withInput()->with('error', 'Erro durante o registro. Tente novamente.');
+            return back()->withInput()->with('error', 'Erro durante o cadastro. Por favor, tente novamente.');
         }
     }
 
@@ -94,7 +94,9 @@ class MVPController extends Controller
 
     $noPosts = $posts->isEmpty();
 
-    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount', 'loadedPosts'));
+    $postsCount = $posts->count();
+
+    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount', 'loadedPosts', 'postsCount'));
 }
 
 public function showDados()
@@ -131,7 +133,6 @@ public function showDados()
     $user = Auth::user();
 
     $user->username = $request->input('username');
-    $user->sexo = $request->input('sexo');
     $user->telefone = $request->input('telefone');
     $user->biografia = $request->input('biografia'); // Atualize o campo de biografia
     $user->idioma = $request->input('idioma');       // Atualize o campo de idioma
@@ -150,7 +151,7 @@ public function showDados()
     if ($user->save()) {
         return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
     } else {
-        return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Tente novamente.');
+        return back()->withInput()->with('error', 'Erro ao atualizar o perfil. Por favor, tente novamente.');
     }
 }
 
