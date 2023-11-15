@@ -62,9 +62,9 @@
                 <div class="input-group">
                     <form action="{{ route('pesquisa') }}" method="GET" class = "formulariopesquisar">
                     <input type="text" id="campoPesquisa" name="query" placeholder="Pesquisar por nome ou username" class="form-control" aria-label="Recipient's username" aria-describedby="pesquisar">
-                    <button   class="btn" type="submit" id="pesquisarBtn" disabled>
-                    <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
-                    </button>
+                    <!--<button   class="btn" type="submit" id="pesquisarBtn" disabled>
+                        <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
+                    </button>-->
                     </form>
                 
                 <div id="sugestoesPesquisa"></div>               
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <script>
+<script>
     $(document).ready(function () {
         var campoPesquisa = $('#campoPesquisa');
         var pesquisarBtn = $('#pesquisarBtn');
