@@ -3,7 +3,10 @@ body{
 }
 
 .container-fluid{
-    background-color: #F4F0F0;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .nav{
@@ -44,4 +47,21 @@ body{
 
 textarea{
     resize: none !important;
+}
+  
+/* Works on Chrome, Edge, and Safari */
+/* largura da barra de rolagem */
+body::-webkit-scrollbar {
+    width: 15px;
+}
+ 
+/* background da barra de rolagem */
+body::-webkit-scrollbar-track {
+    background-color: #F4FFF7;
+}
+  
+/* customizar a barrinha da barra de rolagem */
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(105, 240, 59);
+    border-radius: 20px;
 }
