@@ -1,14 +1,10 @@
 .container-fluid{
-    background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/10055945-vector-landscape-with-fog-of-green-mountain-eps-file-gratis-vetor.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
     height: 100vh;
-    padding-top: 7%;
+    padding: 5%;
 }
 
 .login{
-    padding: 7%;
+    padding: 7% 10% 0 7%;
 }
 
 .titulologin{
@@ -54,11 +50,13 @@ form{
 .formlogin p{
     text-align: center;
     font-size: 0.8rem;
+    color: #204028;
 }
 
 .formlogin .registerlogin{
     margin-top: 5%;
     margin-bottom: 0;
+    color: #204028;
 }
 
 .formlogin a{

@@ -1,13 +1,5 @@
 /* CADASTRO - REGISTER.BLADE.PHP */
-.container-fluid{
-    background-image: url('https://images8.alphacoders.com/101/1015192.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-}
-
-.header a, .landingpage, .formregister .btn{
-    color: white;
+.landingpage, .formregister .btn{
     color: white;
 }
 
