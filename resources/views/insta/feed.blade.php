@@ -1,6 +1,6 @@
 @extends('layouts.template-inside')
 @section('titulo', 'Página Inicial')
-@section('css', '/css/feed.css')
+@section('css', '/css/perfil.css')
 @section('conteudo')
 
     @include('layouts.publicacoes')
