@@ -28,13 +28,21 @@
                 @endif
 
                 <span>{{ $postsCount }} publicações •</span>
-                <button class = "btn quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</button>
-                <button class = "btn quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</button>
+                <span class = "btn quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</span>
+                <span class = "btn quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</span>
             </div>
         </div>
 
         <h5>Suas publicações</h5>
         @include('layouts.publicacoes')
+        <!-- Adicione o formulário para carregar mais posts -->
+        @if($postsCount > 5 && $postsPage < $postsCount)
+            <form action="{{ route('perfil') }}" method="GET" id="loadMoreForm">
+                @csrf
+                <input type="hidden" name="loadedPosts" value="{{ $loadedPosts + 5 }}">
+                <button type="submit" class="btn btn-success">Carregar Mais</button>
+            </form>
+        @endif
     </div>
 
     <script>
@@ -53,7 +61,7 @@
 
                 userList.forEach(function(user) {
                     modalContent +=
-                        `<li><a href="{{ route("perfil.outro", ["username" => ""]) }}/${user.username}">${user.username}</a></li>`;
+                        `<li class = "listamodal"><a href="{{ route("perfil.outro", ["username" => ""]) }}/${user.username}">${user.username}</a></li>`;
                 });
 
                 modalContent += `</ul></div></div></div>`;
