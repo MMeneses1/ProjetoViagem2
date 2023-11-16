@@ -1,5 +1,5 @@
 @extends('layouts.template-inside')
-@section('titulo', 'Perfil')
+@section('titulo', 'Meu Perfil')
 @section('css', '/css/perfil.css')
 @section('conteudo')
 
