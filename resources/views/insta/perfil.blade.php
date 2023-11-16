@@ -28,8 +28,8 @@
                 @endif
 
                 <span>{{ $postsCount }} publicações •</span>
-                <button class = "quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</button>
-                <button class = "quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</button>
+                <button class = "btn quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</button>
+                <button class = "btn quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</button>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5">${title}</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close fecharModal" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <ul>`;
@@ -61,9 +61,11 @@
                 $('body').append(modalContent);
 
                 // Adicione um evento de clique ao botão de fechar o modal
-                $('.fecharModal').on('click', function() {
+                $('.fecharModal').on('click', function () {
                     $('.modal').remove(); // Remova o modal ao fechar
                 });
+
+                $('.modal').modal('show');
             }
 
             // Evento de clique no botão Seguidores
