@@ -3,6 +3,7 @@
 @section('css', '/css/perfil.css')
 @section('conteudo')
 
+<div @if($posts->isEmpty()) style="height: 100vh" @endif>
     <div class = "profileinfo">
         @if($otherUser->foto_perfil)
             <div class="profilepicture">
@@ -68,5 +69,5 @@
     @else
         <p>Nenhuma postagem encontrada.</p>
     @endif
-
+</div>
 @endsection

@@ -4,7 +4,7 @@
 @section('conteudo')
 
     <!--<a href="{{ route('insta.perfiledit') }}" class="btn btn-primary">Editar Perfil</a>-->
-
+<div @if($noPosts) style="height: 100vh" @endif>
     <div class = "profileinfo">
         @if(Auth::user()->foto_perfil)
             <div class="profilepicture">
@@ -35,7 +35,7 @@
 
     <h5>Suas publicações</h5>
     @include('layouts.publicacoes')
-
+</div>
 @endsection
 
 <script>
