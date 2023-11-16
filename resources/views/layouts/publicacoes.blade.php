@@ -17,12 +17,15 @@
                     <div class="card post">
                         <div class="card-header header">
                             <span class="userpost">
-                                @if(Auth::user()->foto_perfil)
-                                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                @endif
                                 @if(Auth::user()->username == $post->user->username)
+                                    @if(Auth::user()->foto_perfil)
+                                        <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+                                    @endif
                                     <a class = "linkperfil" href="{{ route('perfil') }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                                 @else
+                                    @if($post->user->foto_perfil)
+                                        <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+                                    @endif
                                     <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                                 @endif
                             </span>
@@ -69,13 +72,16 @@
                                 <div class="comentario">
                                     <div class="header">
                                         <span>
-                                            @if(Auth::user()->foto_perfil)
-                                                <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                            @endif
-                                            @if(Auth::user()->username == $comment->user->username)
-                                                <a class = "linkperfil" href="{{ route('perfil') }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
+                                            @if(Auth::user()->username == $post->user->username)
+                                                @if(Auth::user()->foto_perfil)
+                                                    <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+                                                @endif
+                                                <a class = "linkperfil" href="{{ route('perfil') }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                                             @else
-                                                <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
+                                                @if($post->user->foto_perfil)
+                                                    <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+                                                @endif
+                                                <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                                             @endif
                                         </span>
                                         
@@ -106,12 +112,6 @@
             <hr/>
         @endforeach
     </ul>
-
-    <!-- Adicione o formulário para carregar mais posts -->
-    <form action="{{ route('load.more.posts', ['loadedPosts' => $loadedPosts]) }}" method="GET" id="loadMoreForm">
-        @csrf
-        <button type="submit" class="btn btn-success">Carregar Mais</button>
-    </form>
 
     @else
         <p>Nenhuma publicação foi encontrada.</p>
