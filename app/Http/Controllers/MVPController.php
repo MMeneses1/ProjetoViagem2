@@ -94,9 +94,10 @@ class MVPController extends Controller
 
     $noPosts = $posts->isEmpty();
 
-    $postsCount = $posts->count();
+    $postsCount = $user->posts->count();
+    $postsPage = $posts->count();
 
-    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount', 'loadedPosts', 'postsCount'));
+    return view('insta.perfil', compact('user', 'posts', 'noPosts', 'followersCount', 'followingCount', 'loadedPosts', 'postsCount', 'postsPage'));
 }
 
 public function showDados()
