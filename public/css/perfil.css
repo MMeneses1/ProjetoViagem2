@@ -54,7 +54,7 @@
     padding: 2%;
 }
 
-.postslista, .comentarioslista{
+.postslista, .comentarioslista, .listamodal{
     list-style-type: none;
     padding: 0;
 }
@@ -65,7 +65,7 @@
     text-decoration: none;
 }
 
-.linkperfil:hover{
+.linkperfil:hover, .listamodal a:hover{
     text-decoration: underline;
     color: rgb(145, 203, 145);
 }
@@ -182,6 +182,11 @@
 .comentarioslista::-webkit-scrollbar-thumb {
     background-color: lightgrey;
     border-radius: 20px;
+}
+
+.listamodal a{
+    color: black;
+    text-decoration: none;
 }
 
 /* ANTERIOR
