@@ -24,7 +24,7 @@
 
                     <label class="form-label" for="password">Senha:</label>
                     <input type="password" class="form-control" placeholder="Digite a sua senha" name="password">
-                    <a href = "#">Esqueci a minha senha</a>
+                    <!--<a href = "#">Esqueci a minha senha</a>-->
                     
                     <button class="btn" type="submit">Entrar</button>
                 </form>
