@@ -1,10 +1,10 @@
 @extends('layouts.template-inside')
-@section('titulo', '$otherUser->username')
+@section('titulo', $otherUser->username)
 @section('css', '/css/perfil.css')
 @section('conteudo')
 
     <div class = "profileinfo">
-        @if(Auth::user()->foto_perfil)
+        @if($otherUser->foto_perfil)
             <div class="profilepicture">
                 <img src="{{ asset($otherUser->foto_perfil) }}" alt="Foto de Perfil" class="profileimage">
             </div>

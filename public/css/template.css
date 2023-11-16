@@ -52,7 +52,7 @@ textarea{
 /* Works on Chrome, Edge, and Safari */
 /* largura da barra de rolagem */
 body::-webkit-scrollbar {
-    width: 15px;
+    width: 12px;
 }
  
 /* background da barra de rolagem */
