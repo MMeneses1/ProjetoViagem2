@@ -167,6 +167,8 @@ public function showOtherUserProfile($username)
 
     $posts = Post::where('user_id', $otherUser->id)->orderByDesc('created_at')->get();
 
+    $noPosts = $posts->isEmpty();
+
     return view('insta.perfil-outro', compact('otherUser', 'posts'));
 }
 

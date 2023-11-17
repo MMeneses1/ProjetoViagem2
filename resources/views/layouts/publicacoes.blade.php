@@ -1,7 +1,7 @@
     <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
         @csrf
         <div class="form-group">
-            <textarea id="content" name="content" rows = '5' class="form-control" placeholder="Digite o texto da sua publicação" required></textarea>
+            <textarea id="content" name="content" rows = '5' max = "250" class="form-control" placeholder="Digite o texto da sua publicação" required></textarea>
             <input class="form-control" type="file" id="image" name="image">
         </div>
 
@@ -11,8 +11,8 @@
 
     @if(!$noPosts)
     <ul role="list" class="postslista">
-        @foreach($posts->sortByDesc('created_at') as $post)
-            <li class="postitem">
+    @foreach($posts->sortByDesc('created_at') as $index => $post)
+        <li class="postitem" @if($loop->last) id="ultimoPost" @endif>
                 <div class="conteudopost">
                     <div class="card post">
                         <div class="card-header header">
@@ -61,7 +61,7 @@
                             <label for = 'comment_image'>
                                 <img class = "selecionarimagem" src = "{{ asset('images/image.png') }}">
                             </label>
-                            <input class = "inputfile" type="file" id="comment_image" name="comment_image" class="form-control">
+                            <input class = "form-control-file inputfile" type="file" id="comment_image" name="comment_image" >
                         </div>
                         <button type="submit" class="btn btn-outline-success comentarpost">Comentar</button>
                     </form>
@@ -72,16 +72,16 @@
                                 <div class="comentario">
                                     <div class="header">
                                         <span>
-                                            @if(Auth::user()->username == $post->user->username)
+                                            @if(Auth::user()->username == $comment->user->username)
                                                 @if(Auth::user()->foto_perfil)
                                                     <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                                 @endif
-                                                <a class = "linkperfil" href="{{ route('perfil') }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+                                                <a class = "linkperfil" href="{{ route('perfil') }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
                                             @else
-                                                @if($post->user->foto_perfil)
-                                                    <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+                                                @if($comment->user->foto_perfil)
+                                                    <img src="{{ asset($comment->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                                 @endif
-                                                <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+                                                <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
                                             @endif
                                         </span>
                                         
@@ -116,3 +116,11 @@
     @else
         <p>Nenhuma publicação foi encontrada.</p>
     @endif
+
+<script>
+   function scrollToLastPost() {
+    $('html, body').animate({
+        scrollTop: $('#ultimoPost').offset().top
+    }, 'slow');
+}
+</script>

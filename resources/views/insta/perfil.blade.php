@@ -28,8 +28,8 @@
                 @endif
 
                 <span>{{ $postsCount }} publicações •</span>
-                <span class = "btn quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</span>
-                <span class = "btn quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</span>
+                <span class = "quantidade" id="mostrarSeguidores">{{ $followersCount }} seguidores •</span>
+                <span class = "quantidade" id="mostrarSeguindo">{{ $followingCount }} seguindo</span>
             </div>
         </div>
 

@@ -19,7 +19,7 @@
 
         <nav class="navbar header">
             <div class="container">
-                <a class="navbar-brand" href="login">
+                <a class="navbar-brand" href="">
                     <img src="{{ asset('images/bussola.png') }}" width="25" height="25" alt="Bússola" class="d-inline-block align-text-top">
                     Tripster
                 </a>

@@ -9,13 +9,15 @@ class InicioController extends Controller
     public function index($loadedPosts = 5)
 {
     $posts = Post::latest()->take($loadedPosts)->get();
-    $postsCount = $posts->count() + 1;
+    $postsPage = $posts->count() + 1;
+    $postsCount = Post::count();
 
     return view('insta.feed', [
         'posts' => $posts,
         'noPosts' => $posts->isEmpty(),
         'loadedPosts' => $loadedPosts,
         'postsCount' => $postsCount,
+        'postsPage' => $postsPage ,
     ]);
 }
 
