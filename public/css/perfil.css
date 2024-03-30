@@ -40,98 +40,99 @@
     text-decoration: underline;
 }
 
-/* Estilização do feed*/
-
-.perfilfeed{
+/* Estilização do feed */
+.perfilfeed {
     width: 30px;
     height: 30px;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.formulariopost, .formulariocomentario{
-    background-color: #F4FFF7;
+.formulariopost
+.formulariocomentario {
+    background-color: #f4fff7;
     padding: 2%;
 }
 
-.postslista, .comentarioslista, .listamodal{
+.postslista {
     list-style-type: none;
     padding: 0;
+    overflow-y: auto; /* Adicione esta linha para adicionar a barra de rolagem apenas para a lista de posts */
+    max-height: 80vh; /* Adicione esta linha para limitar a altura da lista de posts */
 }
 
-.linkperfil{
+.linkperfil {
     color: black;
     font-weight: bold;
     text-decoration: none;
 }
 
-.linkperfil:hover, .listamodal a:hover{
+.linkperfil:hover,
+.listamodal a:hover {
     text-decoration: underline;
     color: rgb(145, 203, 145);
 }
 
-/*Estilização dos posts*/
-
-.formulariopost{
+/* Estilização dos posts */
+.formulariopost {
     margin-bottom: 3%;
 }
 
-.criarpost{
+.criarpost {
     margin-top: 2%;
 }
 
-.criarpost:hover{
+.criarpost:hover {
     background-color: rgb(105, 240, 59) !important;
     color: black;
     border: 1px solid rgb(105, 240, 59) !important;
 }
 
-.post{
-    background-color: #F4FFF7 !important;
+.post {
+    background-color: #f4fff7 !important;
     margin-bottom: 1%;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.excluirpost{
+.excluirpost {
     width: 20px;
 }
 
-.conteudopost{
+.conteudopost {
     min-width: 60%;
     max-width: 100%;
 }
 
-.textopost{
+.textopost {
     font-size: 1.1rem;
 }
 
-.imagempost img{
+.imagempost img {
     max-width: 500px;
 }
 
-.imagempost{
+.imagempost {
     text-align: center;
 }
 
-/*Estilização dos comentários*/
-
-.formulariocomentario{
+/* Estilização dos comentários */
+.formulariocomentario {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 }
 
-.comentarioslista{
+.comentarioslista {
     padding: 2%;
-    background-color: #F4FFF7;
+    background-color: #f4fff7;
 }
 
-#comment{
+#comment {
     flex-grow: 1;
     width: 200% !important;
 }
@@ -143,30 +144,30 @@
     width: 100%;
 }
 
-.textocomentario{
+.textocomentario {
     word-wrap: break-word;
     max-width: 100%;
 }
 
-.comentario{
+.comentario {
     border: none !important;
     padding-bottom: 1%;
 }
 
-.comentarioimagem{
+.comentarioimagem {
     max-width: 200px;
 }
 
-.inputfile{
+.inputfile {
     display: none;
 }
 
-.selecionarimagem{
+.selecionarimagem {
     width: 20%;
     margin: 10px;
 }
 
-.comentarioslista{
+.comentarioslista {
     max-height: 80vh;
     overflow-y: auto;
 }
@@ -177,153 +178,19 @@
     width: 7px;
     height: 7px;
 }
-  
+
 /* customizar a barrinha da barra de rolagem */
 .comentarioslista::-webkit-scrollbar-thumb {
     background-color: lightgrey;
     border-radius: 20px;
 }
 
-.listamodal a{
+.listamodal a {
     color: black;
     text-decoration: none;
 }
 
-/* ANTERIOR
-
-.userdetails {
-    display: flex;
-    justify-content: space-between;
+#postsContainer {
+    max-height: 80vh; /* Limita a altura do contêiner de posts */
+    overflow-y: auto; /* Adiciona uma barra de rolagem quando necessário */
 }
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0; 
-}
-
-.container-fluid {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 1500px; 
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.post-item {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.post-header {
-    font-size: 14px;
-    color: #666;
-}
-
-.post-content {
-    margin-top: 10px;
-}
-
-.post-image {
-    max-width: 100%;
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-}
-
-.comment-box {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
-    overflow-y: auto;
-    
-}
-
-.comment-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}S
-
-.comment-header {
-    font-size: 14px;
-    color: #666;
-}
-
-.comment-text {
-    margin-top: 10px;
-}
-
-.comment-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-}
-
-
-.post-form {
-    max-width: 50%; 
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.post-form label {
-    font-weight: bold;
-}
-
-.post-form textarea,
-.post-form input[type="text"],
-.post-form input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.post-form button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.post-form button:hover {
-    background-color: #0056b3;
-}
-
-
-.form-container {
-    max-width: 50%; 
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-/*

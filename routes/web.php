@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/perfil/editar', [MVPController::class, 'updateProfile'])->name('perfil.update');
     Route::get('/perfil/{username?}', [MVPController::class, 'showOtherUserProfile'])->name('perfil.outro');
     Route::get('/perfil/{loadedPosts?}', [MVPController::class, 'showProfile'])->name('perfil');
+    Route::get('/testepaginapost', [MVPController::class, 'showTestePaginaPost'])->name('testepaginapost');
+
 
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.delete');
@@ -31,8 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
     Route::get('/feed', [InicioController::class, 'index'])->name('feed');
-    Route::get('/feed/{loadedPosts?}', [InicioController::class, 'index'])->name('feed');
-    Route::get('/load-more-posts/{loadedPosts}', [InicioController::class, 'loadMorePosts'])->name('load.more.posts');
+    
     
     Route::get('/pesquisa', [MVPController::class, 'pesquisar'])->name('pesquisa');
 

@@ -242,6 +242,12 @@ public function getFollowing()
     return response()->json(['following' => $following]);
 }
 
+public function showTestePaginaPost()
+{
+    return view('testepaginapost');
+}
+
+
 
 }
 
