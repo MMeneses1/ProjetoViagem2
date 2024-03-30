@@ -1,12 +1,8 @@
-
-
 <div id="postsContainer" @if($noPosts) style="height: 80vh" @endif>
-
 @include('layouts.posts')
 </div>
 
 <script>
-
 $(document).ready(function(){
     var carregandoPosts = false;
     var currentPage = {{ $postsPage }};

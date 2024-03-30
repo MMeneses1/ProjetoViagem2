@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class InicioController extends Controller
 {
-    public function index($loadedPosts = 5)
+    public function index($loadedPosts = 10)
 {
   $posts = Post::latest()->paginate($loadedPosts);
   $postsPage = $posts->currentPage();
