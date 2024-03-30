@@ -57,7 +57,7 @@
 .postslista {
     list-style-type: none;
     padding: 0;
-    overflow-y: auto; /* Adicione esta linha para adicionar a barra de rolagem apenas para a lista de posts */
+    overflow-y: hidden; /* Adiciona esta linha para ocultar o scroll dentro do post */
     max-height: 80vh; /* Adicione esta linha para limitar a altura da lista de posts */
 }
 
@@ -190,7 +190,18 @@
     text-decoration: none;
 }
 
+/* Estilização do contêiner de posts */
 #postsContainer {
     max-height: 80vh; /* Limita a altura do contêiner de posts */
     overflow-y: auto; /* Adiciona uma barra de rolagem quando necessário */
+}
+
+/* Personalização da barra de rolagem */
+#postsContainer::-webkit-scrollbar {
+    width: 7px; /* Largura da barra de rolagem */
+    height: 7px;
+}
+
+#postsContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0); /* Torna o polegar (a parte da barra de rolagem que o usuário move) transparente */
 }
