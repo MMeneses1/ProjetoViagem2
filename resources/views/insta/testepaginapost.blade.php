@@ -12,8 +12,8 @@ $(document).ready(function(){
     var currentPage = {{ $postsPage }};
     var allPostsLoaded = false;
 
-    $("#postsContainer").scroll(function(){
-        if (!carregandoPosts && !allPostsLoaded && ($(this).scrollTop() + $(this).height() >= $(this)[0].scrollHeight)) {
+    var checkScroll = function() {
+        if (!carregandoPosts && !allPostsLoaded && ($("#postsContainer").scrollTop() + $("#postsContainer").height() >= $("#postsContainer")[0].scrollHeight)) {
             carregandoPosts = true;
 
             $.ajax({
@@ -41,6 +41,9 @@ $(document).ready(function(){
                 }
             });
         }
-    });
+    };
+
+    $("#postsContainer").scroll(checkScroll);
+    $(window).resize(checkScroll);
 });
 </script>
