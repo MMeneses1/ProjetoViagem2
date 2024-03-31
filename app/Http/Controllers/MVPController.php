@@ -244,7 +244,7 @@ public function getFollowing()
 
 public function showTestePaginaPost()
 {
-    return view('testepaginapost');
+    return view('feedpost');
 }
 
 

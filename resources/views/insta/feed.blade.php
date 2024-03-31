@@ -4,7 +4,7 @@
 @section('conteudo')
 @include('layouts.publicacoes')
 
-@include('insta.testepaginapost')
+@include('insta.feedpost')
 
 @endsection
 
