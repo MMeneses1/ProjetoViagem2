@@ -1,16 +1,16 @@
-/* Estilo dos detalhes do perfil */
+
 .profilepicture {
     width: 110px;
     height: 110px;
     border-radius: 50%;
     overflow: hidden;
-}
+  }
 
-.profileimage {
+  .profileimage {
     width: 100%;
     height: 100%;
     object-fit: cover; 
-}
+  }
 
 .profileinfo {
     display: flex;
@@ -40,7 +40,9 @@
     text-decoration: underline;
 }
 
-/* Estilização do feed */
+/* Estilização do feed*/
+
+
 .perfilfeed {
     width: 30px;
     height: 30px;
@@ -48,18 +50,21 @@
     border-radius: 50%;
 }
 
+
 .formulariopost
 .formulariocomentario {
     background-color: #f4fff7;
     padding: 2%;
 }
 
+
 .postslista {
     list-style-type: none;
     padding: 0;
-    overflow-y: hidden; /* Adiciona esta linha para ocultar o scroll dentro do post */
+    overflow-y: auto; /* Adicione esta linha para adicionar a barra de rolagem apenas para a lista de posts */
     max-height: 80vh; /* Adicione esta linha para limitar a altura da lista de posts */
 }
+
 
 .linkperfil {
     color: black;
@@ -67,20 +72,25 @@
     text-decoration: none;
 }
 
+
 .linkperfil:hover,
 .listamodal a:hover {
     text-decoration: underline;
     color: rgb(145, 203, 145);
 }
 
-/* Estilização dos posts */
+/*Estilização dos posts*/
+
+
 .formulariopost {
     margin-bottom: 3%;
 }
 
+
 .criarpost {
     margin-top: 2%;
 }
+
 
 .criarpost:hover {
     background-color: rgb(105, 240, 59) !important;
@@ -88,10 +98,12 @@
     border: 1px solid rgb(105, 240, 59) !important;
 }
 
+
 .post {
     background-color: #f4fff7 !important;
     margin-bottom: 1%;
 }
+
 
 .header {
     display: flex;
@@ -99,64 +111,72 @@
     align-items: center;
 }
 
+
 .excluirpost {
     width: 20px;
 }
+
 
 .conteudopost {
     min-width: 60%;
     max-width: 100%;
 }
 
+
 .textopost {
     font-size: 1.1rem;
 }
+
 
 .imagempost img {
     max-width: 500px;
 }
 
+
 .imagempost {
     text-align: center;
 }
 
-/* Estilização dos comentários */
+/*Estilização dos comentários*/
+
+
 .formulariocomentario {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
 }
 
+
 .comentarioslista {
     padding: 2%;
+    background-color: #F4FFF7;
     background-color: #f4fff7;
 }
+
 
 #comment {
     flex-grow: 1;
     width: 200% !important;
 }
 
-.groupcomentario {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    width: 100%;
-}
+
 
 .textocomentario {
     word-wrap: break-word;
     max-width: 100%;
 }
 
+
 .comentario {
     border: none !important;
     padding-bottom: 1%;
 }
 
+
 .comentarioimagem {
     max-width: 200px;
 }
+
 
 .inputfile {
     display: none;
@@ -167,17 +187,13 @@
     margin: 10px;
 }
 
+
 .comentarioslista {
     max-height: 80vh;
     overflow-y: auto;
 }
 
-/* Works on Chrome, Edge, and Safari */
-/* largura da barra de rolagem */
-.comentarioslista::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-}
+
 
 /* customizar a barrinha da barra de rolagem */
 .comentarioslista::-webkit-scrollbar-thumb {
@@ -185,23 +201,13 @@
     border-radius: 20px;
 }
 
+
 .listamodal a {
     color: black;
     text-decoration: none;
 }
 
-/* Estilização do contêiner de posts */
 #postsContainer {
     max-height: 80vh; /* Limita a altura do contêiner de posts */
     overflow-y: auto; /* Adiciona uma barra de rolagem quando necessário */
-}
-
-/* Personalização da barra de rolagem */
-#postsContainer::-webkit-scrollbar {
-    width: 7px; /* Largura da barra de rolagem */
-    height: 7px;
-}
-
-#postsContainer::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0); /* Torna o polegar (a parte da barra de rolagem que o usuário move) transparente */
 }
