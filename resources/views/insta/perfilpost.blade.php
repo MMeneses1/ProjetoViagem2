@@ -4,26 +4,47 @@
 
 <script>
 $(document).ready(function(){
+    // Função para aplicar eventos aos botões de mostrar comentários
+    function applyCommentEvents() {
+        const showCommentsButtons = document.querySelectorAll('.mostrar-comentarios-btn');
+        showCommentsButtons.forEach(function(showCommentsButton) {
+            const commentsSection = showCommentsButton.nextElementSibling;
+            const commentForm = commentsSection.nextElementSibling;
+
+            showCommentsButton.addEventListener('click', function () {
+                if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
+                    commentsSection.style.display = 'block';
+                    commentForm.style.display = 'block';
+                } else {
+                    commentsSection.style.display = 'none';
+                    commentForm.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Função para carregar mais posts via AJAX
     var carregandoPosts = false;
-    var currentPage = {{ $loadedPosts }};
+    var currentPage = {{ $postsPage }};
     var allPostsLoaded = false;
 
     var checkScroll = function() {
-        if (!carregandoPosts && !allPostsLoaded && ($("#postsContainer").scrollTop() + $("#postsContainer").height() >= $("#postsContainer")[0].scrollHeight - 20)) {
+        if (!carregandoPosts && !allPostsLoaded && ($("#postsContainer").scrollTop() + $("#postsContainer").height() >= $("#postsContainer")[0].scrollHeight- 20)) {
             carregandoPosts = true;
 
             $.ajax({
                 url: "{{ route('perfil') }}",
                 type: "GET",
                 data: {
-                    loadedPosts: currentPage, // Passa o número atual de posts carregados
+                    loadedPosts: {{ $loadedPosts }},
                     page: currentPage + 1,
                 },
                 success: function(response) {
                     var posts = $(response).find('.post'); // Modifique o seletor conforme necessário para corresponder aos seus posts
                     if (posts.length) {
                         $("#postsContainer").append(posts);
-                        currentPage += 10; // Atualiza o número total de posts carregados
+                        currentPage++;
+                        applyCommentEvents(); // Aplicar eventos aos novos posts
                     } else {
                         allPostsLoaded = true;
                     }
@@ -41,5 +62,8 @@ $(document).ready(function(){
 
     $("#postsContainer").scroll(checkScroll);
     $(window).resize(checkScroll);
+
+    // Aplicar eventos aos botões de mostrar comentários nos posts já existentes
+    applyCommentEvents();
 });
 </script>
