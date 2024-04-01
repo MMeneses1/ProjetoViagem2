@@ -113,9 +113,11 @@
     
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const showCommentsButton = document.querySelector('.mostrar-comentarios-btn');
-        const commentsSection = document.querySelector('.comentarioslista');
-        const commentForm = document.querySelector('.formulariocomentario');
+    const showCommentsButtons = document.querySelectorAll('.mostrar-comentarios-btn');
+
+    showCommentsButtons.forEach(function(showCommentsButton) {
+        const commentsSection = showCommentsButton.nextElementSibling;
+        const commentForm = commentsSection.nextElementSibling;
 
         showCommentsButton.addEventListener('click', function () {
             if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
@@ -127,4 +129,6 @@
             }
         });
     });
+});
 </script>
+
