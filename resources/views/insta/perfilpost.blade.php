@@ -5,25 +5,25 @@
 <script>
 $(document).ready(function(){
     var carregandoPosts = false;
-    var currentPage = {{ $postsPage }};
+    var currentPage = {{ $loadedPosts }};
     var allPostsLoaded = false;
 
     var checkScroll = function() {
-        if (!carregandoPosts && !allPostsLoaded && ($("#postsContainer").scrollTop() + $("#postsContainer").height() >= $("#postsContainer")[0].scrollHeight- 20)) {
+        if (!carregandoPosts && !allPostsLoaded && ($("#postsContainer").scrollTop() + $("#postsContainer").height() >= $("#postsContainer")[0].scrollHeight - 20)) {
             carregandoPosts = true;
 
             $.ajax({
-                url: "{{ route('feed') }}",
+                url: "{{ route('perfil') }}",
                 type: "GET",
                 data: {
-                    loadedPosts: {{ $loadedPosts }},
+                    loadedPosts: currentPage, // Passa o número atual de posts carregados
                     page: currentPage + 1,
                 },
                 success: function(response) {
                     var posts = $(response).find('.post'); // Modifique o seletor conforme necessário para corresponder aos seus posts
                     if (posts.length) {
                         $("#postsContainer").append(posts);
-                        currentPage++;
+                        currentPage += 10; // Atualiza o número total de posts carregados
                     } else {
                         allPostsLoaded = true;
                     }

@@ -84,12 +84,12 @@ class MVPController extends Controller
     $followersCount = $user->followers()->count();
     $followingCount = $user->following()->count();
 
-    $loadedPosts = $request->input('loadedPosts', 5); // Defina o valor padrão como 5 se não houver valor
+    $loadedPosts = $request->input('loadedPosts', 0); // Defina o valor padrão como 0
 
     $posts = Post::where('user_id', $user->id)
                  ->orderByDesc('created_at')
-                 ->skip(0) // Pule os posts já carregados
-                 ->take($loadedPosts) // Carregue mais posts
+                 ->skip($loadedPosts) // Pule os posts já carregados
+                 ->take(10) // Carregue mais 10 posts
                  ->get();
 
     $noPosts = $posts->isEmpty();

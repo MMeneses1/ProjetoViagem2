@@ -33,16 +33,10 @@
             </div>
         </div>
 
-        <h5>Suas publicações</h5>
         @include('layouts.publicacoes')
-        <!-- Adicione o formulário para carregar mais posts -->
-        @if($postsCount > 5 && $postsPage < $postsCount)
-            <form action="{{ route('perfil') }}" method="GET" id="loadMoreForm">
-                @csrf
-                <input type="hidden" name="loadedPosts" value="{{ $loadedPosts + 5 }}">
-                <button type="submit" class="btn btn-success">Carregar Mais</button>
-            </form>
-        @endif
+
+        <h5>Suas publicações</h5>
+        @include('insta.perfilpost')       
     </div>
 
     <script>
