@@ -3,21 +3,27 @@
 </div>
 
 <script>
-$(document).ready(function(){
-    // Função para aplicar eventos aos botões de mostrar comentários
-    function applyCommentEvents() {
-        const showCommentsButtons = document.querySelectorAll('.mostrar-comentarios-btn');
-        showCommentsButtons.forEach(function(showCommentsButton) {
-            const commentsSection = showCommentsButton.nextElementSibling;
-            const commentForm = commentsSection.nextElementSibling;
 
-            showCommentsButton.addEventListener('click', function () {
-                if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
-                    commentsSection.style.display = 'block';
-                    commentForm.style.display = 'block';
+
+
+
+$(document).ready(function(){
+    // Função para aplicar eventos aos botões de mostrar/comentar
+    function applyEventsToNewComments(container) {
+        $(container).find('.mostrar-comentarios-btn').each(function() {
+            var showCommentsButton = $(this);
+            var commentsSection = showCommentsButton.next('.boxcomentarios');
+            var commentForm = commentsSection.find('.formulariocomentario');
+
+            showCommentsButton.on('click', function () {
+                if (commentsSection.is(':hidden')) {
+                    commentsSection.show();
+                    commentForm.show();
+                    showCommentsButton.text('Esconder Comentários');
                 } else {
-                    commentsSection.style.display = 'none';
-                    commentForm.style.display = 'none';
+                    commentsSection.hide();
+                    commentForm.hide();
+                    showCommentsButton.text('Mostrar Comentários');
                 }
             });
         });
@@ -44,7 +50,7 @@ $(document).ready(function(){
                     if (posts.length) {
                         $("#postsContainer").append(posts);
                         currentPage++;
-                        applyCommentEvents(); // Aplicar eventos aos novos posts
+                        applyEventsToNewComments(posts); // Reaplicar eventos aos novos comentários
                     } else {
                         allPostsLoaded = true;
                     }
@@ -63,7 +69,10 @@ $(document).ready(function(){
     $("#postsContainer").scroll(checkScroll);
     $(window).resize(checkScroll);
 
-    // Aplicar eventos aos botões de mostrar comentários nos posts já existentes
-    applyCommentEvents();
+    // Aplicar eventos aos botões de mostrar/comentar nos posts já existentes
+    applyEventsToNewComments(document);
+
 });
+
+
 </script>
