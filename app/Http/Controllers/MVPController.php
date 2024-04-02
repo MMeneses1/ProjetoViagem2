@@ -150,20 +150,27 @@ public function showDados()
     }
 }
 
-public function showOtherUserProfile($username)
+public function showOtherUserProfile($username, $loadedPosts = 0)
 {
+    // Modificado para buscar apenas os posts do usuário específico
     $otherUser = User::where('username', $username)->first();
 
     if (!$otherUser) {
-        // Usuário não encontrado
+        // Usuário específico não encontrado
         return redirect()->route('feed')->with('error', 'Usuário não encontrado.');
     }
 
-    $posts = Post::where('user_id', $otherUser->id)->orderByDesc('created_at')->get();
+    $followersCount = $otherUser->followers()->count();
+    $followingCount = $otherUser->following()->count();
+    $user = Auth::user();
+
+    $posts = Post::where('user_id', $otherUser->id)->latest()->paginate($loadedPosts);
+    $postsPage = $posts->currentPage();
+    $postsCount = Post::where('user_id', $otherUser->id)->count();
 
     $noPosts = $posts->isEmpty();
 
-    return view('insta.perfil-outro', compact('otherUser', 'posts'));
+    return view('insta.perfil-outro', compact('otherUser', 'user', 'posts', 'noPosts', 'postsCount', 'postsPage', 'loadedPosts', 'followersCount', 'followingCount'));
 }
 
 public function pesquisar(Request $request)
