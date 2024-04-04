@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\DiarioController;
 
 Route::get('/', [MVPController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [MVPController::class, 'showLoginForm'])->name('login');
@@ -45,5 +46,8 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/get-followers', [MVPController::class, 'getFollowers'])->name('get.followers');
     Route::get('/get-following', [MVPController::class, 'getFollowing'])->name('get.following');
+
+    Route::get('/diario', [DiarioController::class, 'index'])->name('diario.index');
+    Route::post('/diario', [DiarioController::class, 'store'])->name('diario.store');
 
 });

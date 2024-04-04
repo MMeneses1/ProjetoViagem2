@@ -14,6 +14,7 @@ class CreatePostsTable extends Migration
             $table->string('image')->nullable(); // Nome do arquivo de imagem (pode ser nulo)
             $table->timestamps(); // Data de criação e atualização da postagem
             $table->string('caption')->nullable();
+            $table->unsignedBigInteger('diario_id');
         });
     }
 
