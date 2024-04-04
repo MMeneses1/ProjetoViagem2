@@ -1,3 +1,12 @@
+@extends('layouts.template-inside')
+@section('titulo', 'Página Inicial')
+@section('css', '/css/perfil.css')
+@section('conteudo')
+@include('layouts.publicacoes')
+
+
+
+
 <div class="container">
     @foreach($diarioPosts as $diario)
     <div class="diario-card card mb-4">
@@ -33,6 +42,8 @@
     </form>
 </div>
 
+
+
 <style>
 .diario-card {
     display: flex;
@@ -56,3 +67,5 @@
     }
 }
 </style>
+
+@endsection
