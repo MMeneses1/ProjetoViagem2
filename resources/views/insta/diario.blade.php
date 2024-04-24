@@ -30,17 +30,27 @@
     @endforeach
 
     <form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
-        @csrf
-        <div class="form-group">
-            <textarea id="content" name="content" rows='5' max="250" class="form-control" placeholder="Digite o texto da sua publicação" required></textarea>
-            <input class="form-control" type="file" id="image" name="image">
-            @for ($i = 0; $i < 3; $i++)
-                <textarea id="post_content_{{ $i }}" name="post_content_{{ $i }}" rows='5' max="250" class="form-control" placeholder="Digite o texto da postagem {{ $i + 1 }}"></textarea>
-            @endfor
-        </div>
-        <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
-    </form>
-</div>
+    @csrf
+    <div class="form-group">
+        <textarea id="content" name="content" rows='5' class="form-control" placeholder="Digite o texto da sua publicação" required>{{ old('content') }}</textarea>
+        @error('content')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <input class="form-control mt-2" type="file" id="image" name="image">
+        <!-- Verificação de erros para a imagem, se necessário -->
+        @error('image')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @for ($i = 0; $i < 3; $i++)
+            <textarea id="post_content_{{ $i }}" name="post_content_{{ $i }}" rows='5' class="form-control mt-2" placeholder="Digite o texto da postagem {{ $i + 1 }}">{{ old('post_content_' . $i) }}</textarea>
+            <!-- Verificação de erros para o conteúdo da postagem, se necessário -->
+            @error('post_content_' . $i)
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        @endfor
+    </div>
+    <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
+</form>
 
 
 

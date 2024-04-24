@@ -27,15 +27,26 @@ class DiarioController extends Controller
     
     public function store(Request $request)
 {
-    // Valide os dados do formulário aqui
-    
+    $request->validate([
+        'content' => 'nullable|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'caption' => 'nullable|string|max:255', // Adicione a regra de validação para a legenda
+        // Adicione a validação para os campos de conteúdo da postagem
+        'post_content_0' => 'nullable|string|max:255',
+        'post_content_1' => 'nullable|string|max:255',
+        'post_content_2' => 'nullable|string|max:255',
+    ]);
+
+    // O redirecionamento automático acontecerá se houver erros de validação
+    // Não é necessário verificar manualmente $validator->fails()
+
     $diarioPost = new Diario();
     $diarioPost->content = $request->input('content');
     // Salve a imagem se necessário
     $diarioPost->save();
 
     $postIds = [];
-    
+
     // Crie 1, 2 ou 3 posts para esta entrada do diário
     for ($i = 0; $i < 3; $i++) {
         if ($request->has('post_content_' . $i)) {
@@ -45,7 +56,7 @@ class DiarioController extends Controller
             // Associe o ID do usuário autenticado à postagem
             $post->user_id = auth()->user()->id;
             $post->save();
-    
+
             // Adicione o ID da postagem à lista de IDs
             $postIds[] = $post->id;
         }
@@ -57,7 +68,7 @@ class DiarioController extends Controller
     // Associe os IDs das postagens à entrada do diário
     $diarioPost->post_ids = $postIdsString;
     $diarioPost->save();
-    
+
     return redirect()->back()->with('success', 'Entrada do diário criada com sucesso!');
 }
 
