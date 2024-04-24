@@ -30,7 +30,8 @@ class DiarioController extends Controller
     $request->validate([
         'content' => 'nullable|string|max:255',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'caption' => 'nullable|string|max:255', // Adicione a regra de validação para a legenda
+        // Remova a validação para o campo "caption"
+        // 'caption' => 'nullable|string|max:255',
         // Adicione a validação para os campos de conteúdo da postagem
         'post_content_0' => 'nullable|string|max:255',
         'post_content_1' => 'nullable|string|max:255',
@@ -50,19 +51,24 @@ class DiarioController extends Controller
 
     // Crie 1, 2 ou 3 posts para esta entrada do diário
     for ($i = 0; $i < 3; $i++) {
-        if ($request->has('post_content_' . $i)) {
+        if ($request->has('post_content_' . $i) || $request->hasFile('post_image_' . $i)) {
             $post = new Post();
             $post->content = $request->input('post_content_' . $i);
-            $post->diario_id = $diarioPost->id;
-            $post->user_id = auth()->user()->id;
-            $post->save();
 
             // Salve a imagem da postagem, se presente
             if ($request->hasFile('post_image_' . $i)) {
                 $imagePath = $request->file('post_image_' . $i)->store('public/images');
                 $post->image = str_replace('public/', 'storage/', $imagePath);
-                $post->save();
             }
+
+            // Salvar a legenda, se presente
+            if ($request->has('caption_' . $i)) {
+                $post->caption = $request->input('caption_' . $i);
+            }
+
+            $post->diario_id = $diarioPost->id;
+            $post->user_id = auth()->user()->id;
+            $post->save();
 
             $postIds[] = $post->id;
         }
@@ -77,6 +83,7 @@ class DiarioController extends Controller
 
     return redirect()->back()->with('success', 'Entrada do diário criada com sucesso!');
 }
+
 
 
 
