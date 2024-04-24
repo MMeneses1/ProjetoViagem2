@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Auth\Authenticatable;
 
 class AddAdditionalFieldsToUsers extends Migration
 {
@@ -15,13 +16,15 @@ class AddAdditionalFieldsToUsers extends Migration
             $table->string('pais')->nullable();
             $table->string('idioma')->nullable();
             $table->string('foto_perfil')->nullable();
+            $table->rememberToken();
         });
     }
 
     public function down()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropColumn(['sexo', 'biografia', 'telefone', 'pais', 'idioma', 'foto_perfil']);
+            $table->dropColumn(['sexo', 'biografia', 'telefone', 'pais', 'idioma', 'foto_perfil','remember_token']);
+            
         });
     }
 }

@@ -37,18 +37,18 @@ class DiarioController extends Controller
     $postIds = [];
     
     // Crie 1, 2 ou 3 posts para esta entrada do diário
-    for ($i = 0; $i < rand(1, 3); $i++) {
-        $post = new Post();
-        $post->content = $request->input('post_content_' . $i);
-        $post->diario_id = $diarioPost->id;
-
-        // Associe o ID do usuário autenticado à postagem
-        $post->user_id = auth()->user()->id;
-        
-        $post->save();
-
-        // Adicione o ID da postagem à lista de IDs
-        $postIds[] = $post->id;
+    for ($i = 0; $i < 3; $i++) {
+        if ($request->has('post_content_' . $i)) {
+            $post = new Post();
+            $post->content = $request->input('post_content_' . $i);
+            $post->diario_id = $diarioPost->id;
+            // Associe o ID do usuário autenticado à postagem
+            $post->user_id = auth()->user()->id;
+            $post->save();
+    
+            // Adicione o ID da postagem à lista de IDs
+            $postIds[] = $post->id;
+        }
     }
 
     // Converta a lista de IDs em uma string separada por vírgulas

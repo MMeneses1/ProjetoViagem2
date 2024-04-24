@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\DiarioController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 Route::get('/', [MVPController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [MVPController::class, 'showLoginForm'])->name('login');
@@ -13,6 +15,12 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 
 Route::get('/signup', [MVPController::class, 'showRegisterForm'])->name('insta.register');
 Route::post('/signup', [MVPController::class, 'register'])->name('register');
+
+Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 Route::middleware('auth')->group(function () {
     // Rotas protegidas por autenticação
