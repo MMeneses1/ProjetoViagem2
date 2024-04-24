@@ -19,8 +19,9 @@
         <form action="{{ route('login') }}" method="POST" class="formlogin">
             <h2>Acesse a sua conta<h2>
                     @csrf <!-- Adicione o token CSRF -->
-            <label class="form-label" for="email">E-mail ou usuário:</label>
-            <input type="text" class="form-control" placeholder="exemplo@email.com" name="email">
+                    <label class="form-label" for="email_or_username">E-mail ou usuário:</label>
+<input type="text" class="form-control" placeholder="exemplo@email.com ou nome de usuário" name="email_or_username">
+
 
             <label class="form-label" for="password">Senha:</label>
             <input type="password" class="form-control" placeholder="Digite a sua senha" name="password">
