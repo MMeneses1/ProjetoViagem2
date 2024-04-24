@@ -19,6 +19,10 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="post-content card-text">{{ $post->content }}</p>
+                            <!-- Adicione a tag de imagem para exibir a imagem da postagem, se presente -->
+                            @if($post->image)
+                                <img src="{{ asset($post->image) }}" class="img-fluid" alt="Imagem da postagem">
+                            @endif
                             <!-- Adicione qualquer outra informação do post que deseja exibir -->
                         </div>
                     </div>
@@ -28,21 +32,26 @@
         </div>
     </div>
     @endforeach
+</div>
 
-    <form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
+
+<form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
     @csrf
     <div class="form-group">
         <textarea id="content" name="content" rows='5' class="form-control" placeholder="Digite o texto da sua publicação" required>{{ old('content') }}</textarea>
         @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <input class="form-control mt-2" type="file" id="image" name="image">
-        <!-- Verificação de erros para a imagem, se necessário -->
-        @error('image')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+    
         @for ($i = 0; $i < 3; $i++)
+            <label for="post_content_{{ $i }}" class="post-number">Postagem {{ $i + 1 }}</label>
             <textarea id="post_content_{{ $i }}" name="post_content_{{ $i }}" rows='5' class="form-control mt-2" placeholder="Digite o texto da postagem {{ $i + 1 }}">{{ old('post_content_' . $i) }}</textarea>
+            <!-- Adicione campos de upload de imagem para cada postagem -->
+            <input class="form-control mt-2" type="file" id="post_image_{{ $i }}" name="post_image_{{ $i }}">
+            <!-- Verificação de erros para a imagem da postagem, se necessário -->
+            @error('post_image_' . $i)
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <!-- Verificação de erros para o conteúdo da postagem, se necessário -->
             @error('post_content_' . $i)
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -51,6 +60,7 @@
     </div>
     <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
 </form>
+
 
 
 

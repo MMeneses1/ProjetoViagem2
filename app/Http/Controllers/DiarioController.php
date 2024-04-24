@@ -35,14 +35,15 @@ class DiarioController extends Controller
         'post_content_0' => 'nullable|string|max:255',
         'post_content_1' => 'nullable|string|max:255',
         'post_content_2' => 'nullable|string|max:255',
+        // Adicione a validação para as imagens das postagens
+        'post_image_0' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'post_image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'post_image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    // O redirecionamento automático acontecerá se houver erros de validação
-    // Não é necessário verificar manualmente $validator->fails()
-
+    // Crie uma nova entrada do diário
     $diarioPost = new Diario();
     $diarioPost->content = $request->input('content');
-    // Salve a imagem se necessário
     $diarioPost->save();
 
     $postIds = [];
@@ -53,11 +54,16 @@ class DiarioController extends Controller
             $post = new Post();
             $post->content = $request->input('post_content_' . $i);
             $post->diario_id = $diarioPost->id;
-            // Associe o ID do usuário autenticado à postagem
             $post->user_id = auth()->user()->id;
             $post->save();
 
-            // Adicione o ID da postagem à lista de IDs
+            // Salve a imagem da postagem, se presente
+            if ($request->hasFile('post_image_' . $i)) {
+                $imagePath = $request->file('post_image_' . $i)->store('public/images');
+                $post->image = str_replace('public/', 'storage/', $imagePath);
+                $post->save();
+            }
+
             $postIds[] = $post->id;
         }
     }
@@ -71,5 +77,7 @@ class DiarioController extends Controller
 
     return redirect()->back()->with('success', 'Entrada do diário criada com sucesso!');
 }
+
+
 
 }
