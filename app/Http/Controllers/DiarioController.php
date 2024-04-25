@@ -26,26 +26,28 @@ class DiarioController extends Controller
 
     
     public function store(Request $request)
-{
-    $request->validate([
-        'content' => 'nullable|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // Remova a validação para o campo "caption"
-        // 'caption' => 'nullable|string|max:255',
-        // Adicione a validação para os campos de conteúdo da postagem
-        'post_content_0' => 'nullable|string|max:255',
-        'post_content_1' => 'nullable|string|max:255',
-        'post_content_2' => 'nullable|string|max:255',
-        // Adicione a validação para as imagens das postagens
-        'post_image_0' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'post_image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'post_image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
-
-    // Crie uma nova entrada do diário
-    $diarioPost = new Diario();
-    $diarioPost->content = $request->input('content');
-    $diarioPost->save();
+    {
+        $request->validate([
+            'content' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'address' => 'nullable|string|max:255', // Validação para o campo de endereço
+            // Validações para os campos de conteúdo da postagem e imagens das postagens
+            'post_content_0' => 'nullable|string|max:255',
+            'post_content_1' => 'nullable|string|max:255',
+            'post_content_2' => 'nullable|string|max:255',
+            'post_image_0' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'post_image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'post_image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        // Crie uma nova entrada do diário
+        $diarioPost = new Diario();
+        $diarioPost->content = $request->input('content');
+    
+        // Salve o endereço, se presente
+        $diarioPost->address = $request->input('address');
+    
+        $diarioPost->save();
 
     $postIds = [];
 

@@ -11,7 +11,8 @@ class CreateDiariosTable extends Migration
         Schema::create('diarios', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->text('post_ids')->nullable(); // Permitindo valores nulos
+            $table->string('address')->nullable(); // Adicionando a coluna 'address'
+            $table->text('post_ids')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

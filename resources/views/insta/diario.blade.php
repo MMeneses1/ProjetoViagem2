@@ -34,15 +34,35 @@
     @endforeach
 </div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
 
-<form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
+    <div>
+    <form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
     @csrf
     <div class="form-group">
         <textarea id="content" name="content" rows='5' class="form-control" placeholder="Digite o texto da sua publicação" required>{{ old('content') }}</textarea>
         @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-    
+        
+        <label for="address" class="mt-3">Endereço (opcional):</label>
+        <input id="pac-input" type="text" name="address" class="form-control" placeholder="Digite o endereço">
+        
         @for ($i = 0; $i < 3; $i++)
             <label for="post_content_{{ $i }}" class="post-number">Postagem {{ $i + 1 }}</label>
             <textarea id="post_content_{{ $i }}" name="post_content_{{ $i }}" rows='5' class="form-control mt-2" placeholder="Digite o texto da postagem {{ $i + 1 }}">{{ old('post_content_' . $i) }}</textarea>
@@ -60,6 +80,37 @@
     </div>
     <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
 </form>
+    </div>
+
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.749933, lng: -73.98633 },
+                zoom: 13,
+                mapTypeControl: false,
+            });
+
+            const input = document.getElementById("pac-input");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo("bounds", map);
+
+            autocomplete.addListener("place_changed", function () {
+                const place = autocomplete.getPlace();
+                if (!place.geometry || !place.geometry.location) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+                
+                document.getElementById("address").value = place.formatted_address;
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk_ltLlGEsc3XBSEXp9t8x3S_8U0uXIsc&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
 
 
 
