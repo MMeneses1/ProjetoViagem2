@@ -1,5 +1,5 @@
 @if(!$noPosts)
-    <ul role="list" class="postslista">
+<ul role="list" class="postslista">
     @foreach($posts->sortByDesc('created_at') as $index => $post)
         <li class="postitem" @if($loop->last) id="ultimoPost" @endif>
             <div class="conteudopost">
@@ -9,6 +9,13 @@
                             @if(Auth::user()->username == $post->user->username)
                                 @if(Auth::user()->foto_perfil)
                                     <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
+
+
+
+
+
+
+
                                 @endif
                                 <a class = "linkperfil" href="{{ route('perfil') }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                             @else
@@ -16,6 +23,20 @@
                                     <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                 @endif
                                 <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             @endif
                         </span>
 
@@ -28,6 +49,10 @@
                                 <button type="submit" class="btn">
                                     <img class="excluirpost" src="{{ asset('images/lixeira.png') }}"/>
                                 </button>
+
+
+
+
                             </form>
                         @endif
                     </div>
@@ -42,6 +67,24 @@
 
                     <!-- Botão para mostrar/esconder comentários -->
                     <button class="mostrar-comentarios-btn btn btn-link">Mostrar Comentários</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <!-- Formulário de comentário (inicialmente oculto) -->
                     <div class="boxcomentarios" style="display: none;">
@@ -111,3 +154,4 @@
 @else
     <p>Nenhuma publicação foi encontrada.</p>
 @endif
+
