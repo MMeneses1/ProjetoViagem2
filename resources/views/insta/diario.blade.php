@@ -12,6 +12,8 @@
     <div class="diario-card card mb-4">
         <div class="card-body">
             <h5 class="diario-title card-title">{{ $diario->content }}</h5>
+            <!-- Exibir a localização -->
+            <p>Localização: {{ $diario->address }}</p>
             <!-- Adicione qualquer outra informação do diário que deseja exibir -->
             <div class="posts-wrapper row">
                 @foreach($diario->posts as $post)
@@ -49,7 +51,8 @@
     </style>
 </head>
 <body>
-    <div id="map"></div>
+<div id="map" style="display: none;"></div>
+
 
     <div>
     <form action="{{ route('diario.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
