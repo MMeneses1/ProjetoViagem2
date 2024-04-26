@@ -10,7 +10,7 @@
     <h2>Recomendações de Usuários</h2>
     <ul>
         @foreach ($recommendations as $user)
-            <li>{{ $user->username }}</li>
+            <li><a href="{{ route('perfil.outro', ['username' => $user->username]) }}">{{ $user->username }}</a></li>
         @endforeach
     </ul>
 
