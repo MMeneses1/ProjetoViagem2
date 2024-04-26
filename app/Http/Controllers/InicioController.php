@@ -34,40 +34,59 @@ class InicioController extends Controller
 
     // Verificar se o usuário segue alguém
     if ($user->following()->exists()) {
-        // Obter seguidores dos seguidores do usuário
-        $friendsOfFriends = $user->followers()->with('followers')->get()->flatMap->followers->pluck('usuarios.id')->unique();
-
-        // Obter usuários seguidos pelo usuário
+        // Obter os IDs dos usuários seguidos pelo usuário
         $followingIds = $user->following()->pluck('usuarios.id');
 
-        // Obter usuários que são amigos de amigos, excluindo aqueles que o usuário já segue e o próprio usuário
-        $friendsOfFriendsNotFollowing = User::whereIn('usuarios.id', $friendsOfFriends)
+        // Obter os IDs dos seguidores dos usuários seguidos pelo usuário
+        $friendsOfFollowingIds = $user->following()->with('followers')->get()->flatMap->followers->pluck('followers.id')->unique();
+
+        // Obter os IDs dos seguidores do usuário
+        $followersIds = $user->followers()->pluck('followers.id');
+
+        // Obter os IDs dos usuários que seguem o usuário mas não são seguidos de volta
+        $followersNotFollowingBackIds = $followersIds->diff($followingIds);
+
+        // Obter amigos aleatórios dos amigos que o usuário segue
+        $randomFriendsOfFriendsIds = User::whereIn('usuarios.id', $friendsOfFollowingIds)
             ->whereNotIn('usuarios.id', $followingIds)
             ->where('usuarios.id', '!=', $user->id)
-            ->limit(4)
-            ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->pluck('usuarios.id');
 
-        $numRecommendations = $friendsOfFriendsNotFollowing->count();
+        // Obter um seguidor do usuário que não é seguido de volta
+        $randomFollowerNotFollowingBackId = $followersNotFollowingBackIds->random();
 
-        // Obter usuários aleatórios que o usuário não segue, se necessário
-        if ($numRecommendations < 4) {
-            $randomUsersNotFollowing = User::whereNotIn('usuarios.id', $followingIds->merge([$user->id]))
-                ->whereNotIn('usuarios.id', $friendsOfFriends)
+        // Obter um usuário aleatório que o usuário não segue
+        $randomUserNotFollowingId = User::whereNotIn('usuarios.id', $followingIds->merge([$user->id]))
+            ->inRandomOrder()
+            ->where('usuarios.id', '!=', $user->id) // Garantir que o próprio usuário não seja incluído
+            ->value('usuarios.id');
+
+        // Combinar todos os IDs em uma lista
+        $recommendationsIds = $randomFriendsOfFriendsIds->merge([$randomFollowerNotFollowingBackId, $randomUserNotFollowingId])->unique();
+
+        // Obter os usuários correspondentes aos IDs
+        $recommendations = User::whereIn('usuarios.id', $recommendationsIds)->get();
+
+        // Se a contagem de recomendações for inferior a 5, preencha com usuários aleatórios
+        while ($recommendations->count() < 5) {
+            $randomUsers = User::whereNotIn('usuarios.id', $followingIds->merge([$user->id])) // Exclua os usuários que o usuário já segue
+                ->where('usuarios.id', '!=', $user->id) // Garantir que o próprio usuário não seja incluído
                 ->inRandomOrder()
-                ->limit(4 - $numRecommendations)
+                ->limit(5 - $recommendations->count())
                 ->get();
-
-            // Combinar os usuários encontrados
-            $recommendations = $friendsOfFriendsNotFollowing->concat($randomUsersNotFollowing);
-        } else {
-            $recommendations = $friendsOfFriendsNotFollowing;
+            $recommendations = $recommendations->merge($randomUsers);
         }
-    } else {
-        // Se o usuário não seguir ninguém, obtenha cinco usuários aleatórios excluindo o próprio usuário
-        $recommendations = User::where('usuarios.id', '!=', $user->id)->inRandomOrder()->limit(5)->get();
-    }
 
-    return $recommendations;
+        return $recommendations;
+    } else {
+        // Se o usuário não segue ninguém, recomende 5 usuários aleatórios, excluindo o próprio usuário
+        $randomUsers = User::where('usuarios.id', '!=', $user->id)->inRandomOrder()->limit(5)->get();
+        return $randomUsers;
+    }
 }
+
+  
 
 }
