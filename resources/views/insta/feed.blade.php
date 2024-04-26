@@ -10,9 +10,14 @@
     <h2>Recomendações de Usuários</h2>
     <ul>
         @foreach ($recommendations as $user)
-            <li><a href="{{ route('perfil.outro', ['username' => $user->username]) }}">{{ $user->username }}</a></li>
+            <li>
+                <img src="{{ $user->foto_perfil }}" alt="{{ $user->username }}" width="50" height="50">
+                <a href="{{ route('perfil.outro', ['username' => $user->username]) }}">{{ $user->username }}</a>
+            </li>
         @endforeach
     </ul>
 
     @include('insta.feedpost')
 @endsection
+
+
