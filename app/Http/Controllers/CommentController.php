@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use Livewire\Component;
 
-class CommentController extends Controller
+
+class CommentController extends Component
 {
     public function store(Request $request, Post $post)
 {
@@ -40,7 +42,7 @@ public function destroy(Comment $comment)
     }
 }
 
-public function index(Comment $comment)
+public function render(Comment $comment)
 {
     $comments = $post->comments()->orderBy('created_at', 'desc')->get();
 

@@ -5,10 +5,11 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Livewire\Component;
 
-class InicioController extends Controller
+class InicioController extends Component
 {
-  public function index($loadedPosts = 0)
+  public function render($loadedPosts = 0)
 {
     // Obtenha as recomendações de usuários
     $recommendations = $this->getRecommendationsForUser();

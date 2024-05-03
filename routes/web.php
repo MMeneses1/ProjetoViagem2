@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/comment/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
-    Route::get('/feed', [InicioController::class, 'index'])->name('feed');
+    Route::get('/feed', [InicioController::class, 'render'])->name('feed');
     
     
     Route::get('/pesquisa', [MVPController::class, 'pesquisar'])->name('pesquisa');
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-followers', [MVPController::class, 'getFollowers'])->name('get.followers');
     Route::get('/get-following', [MVPController::class, 'getFollowing'])->name('get.following');
 
-    Route::get('/diario', [DiarioController::class, 'index'])->name('diario.index');
+    Route::get('/diario', [DiarioController::class, 'render'])->name('diario.render');
     Route::post('/diario', [DiarioController::class, 'store'])->name('diario.store');
 
 });

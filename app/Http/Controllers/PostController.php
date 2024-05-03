@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Livewire\Component;
 
-class PostController extends Controller
+class PostController extends Component
 {
     public function store(Request $request)
     {
@@ -17,7 +18,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->content = $request->input('content');
-        
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $post->image = str_replace('public/', 'storage/', $imagePath);
@@ -33,24 +34,29 @@ class PostController extends Controller
     }
 
     public function destroy(Post $post)
-{
-    // Verifique se o usuário autenticado é o proprietário do post
-    if (auth()->user()->id === $post->user_id) {
-        // Exclua o post e seus comentários relacionados, se necessário
-        $post->comments()->delete(); // Isso exclui todos os comentários relacionados ao post
-        $post->delete();
+    {
+        // Verifique se o usuário autenticado é o proprietário do post
+        if (auth()->user()->id === $post->user_id) {
+            // Exclua o post e seus comentários relacionados, se necessário
+            $post->comments()->delete(); // Isso exclui todos os comentários relacionados ao post
+            $post->delete();
 
-        return redirect()->back()->with('success', 'Post excluído com sucesso.');
+            return redirect()->back()->with('success', 'Post excluído com sucesso.');
+        }
+
+        return redirect()->back()->with('error', 'Você não tem permissão para excluir este post.');
     }
 
-    return redirect()->back()->with('error', 'Você não tem permissão para excluir este post.');
-}
+    public function redirecionarParaOutraPagina($rota)
+    {
+        // Redireciona para outra página
+        return redirect()->to($rota);
+    }
 
-public function index()
-{
-    $posts = Post::orderBy('created_at', 'desc')->get();
+    public function render()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
-    return view('login', compact('posts'));
-}
-
+        return view('login', compact('posts'));
+    }
 }

@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
+use Livewire\Component;
 
-class DiarioController extends Controller
+class DiarioController extends Component
 {
-    public function index()
+    public function render()
     {
         $diarioPosts = Diario::with('posts')->get(); // Recupera todos os posts relacionados para cada entrada do diário
 
