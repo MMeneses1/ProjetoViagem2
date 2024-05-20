@@ -21,8 +21,8 @@ class MVPController extends Component
     {
         return view('insta.register');
     }
- 
- public function register(Request $request)
+
+    public function register(Request $request)
     {
         $rules = [
             'email' => 'required|string|email|max:255|unique:usuarios',
@@ -36,9 +36,9 @@ class MVPController extends Component
             'idioma' => 'nullable|string',
             'foto_perfil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajuste o tamanho máximo conforme necessário
         ];
- 
+
         $messages = [
-            'email' => 'Por favor, informe um e-mail válido.',  
+            'email' => 'Por favor, informe um e-mail válido.',   
             'email.unique' => 'Este e-mail já está sendo utilizado.',
             'nome' => 'Por favor, informe o seu nome.',
             'usuario' => 'Por favor, informe um usuário.',
@@ -47,18 +47,18 @@ class MVPController extends Component
             'password.min' => 'A senha deve ter no mínimo 8 dígitos',
             'password.confirmed' => 'As senhas não são compatíveis.'
         ];
- 
+
         $request->validate($rules, $messages);
- 
+
         $fotoPerfilPath = null;
- 
+
         if ($request->hasFile('foto_perfil')) {
             $image = $request->file('foto_perfil');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/fotos_perfil', $imageName);
             $fotoPerfilPath = 'storage/fotos_perfil/' . $imageName;
         }
- 
+
         $usuario = new User([
             'email' => $request->input('email'),
             'nome' => $request->input('nome'),
@@ -71,10 +71,8 @@ class MVPController extends Component
             'idioma' => $request->input('idioma'),
             'foto_perfil' => $fotoPerfilPath,
         ]);
- 
+
         if ($usuario->save()) {
-            // Chama o método setProfilePhotoDefault() após salvar o usuário
-            $usuario->setProfilePhotoDefault();
             return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
         } else {
             return back()->withInput()->with('error', 'Erro durante o cadastro. Por favor, tente novamente.');
