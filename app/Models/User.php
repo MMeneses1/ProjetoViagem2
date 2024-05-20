@@ -1,15 +1,15 @@
 <?php
-
+ 
 namespace App\Models;
-
+ 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+ 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+ 
     protected $fillable = [
         'email',
         'nome',
@@ -22,18 +22,18 @@ class User extends Authenticatable
         'idioma',
         'foto_perfil',
     ];
-
+ 
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
+ 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+ 
     protected $table = 'usuarios';
-
+ 
     /**
      * Relacionamento muitos para muitos para os usuários que este usuário está seguindo.
      */
@@ -41,7 +41,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
-
+ 
     /**
      * Relacionamento muitos para muitos para os usuários que estão seguindo este usuário.
      */
@@ -49,7 +49,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
-
+ 
     /**
      * Verifica se este usuário está seguindo outro usuário.
      */
@@ -57,7 +57,7 @@ class User extends Authenticatable
     {
         return $this->following->contains($user);
     }
-
+ 
     /**
      * Verifica se este usuário está sendo seguido por outro usuário.
      */
@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         return $this->followers->contains($user);
     }
-
+ 
     /**
      * Relacionamento um para muitos para os posts deste usuário.
      */
@@ -73,7 +73,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-
+ 
     /**
      * Verifica se o usuário pode excluir um comentário.
      */
@@ -81,7 +81,7 @@ class User extends Authenticatable
     {
         return $this->id === $comment->user_id || $this->id === $comment->post->user_id;
     }
-
+ 
     /**
      * Verifica se o usuário pode editar um comentário.
      */
@@ -89,4 +89,11 @@ class User extends Authenticatable
     {
         return $this->id === $comment->user_id;
     }
+ 
+    public function setProfilePhotoDefault()
+    {
+        $this->foto_perfil = 'images/PerfilPadrao.png';
+        $this->save();
+    }
+ 
 }
