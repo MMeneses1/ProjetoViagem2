@@ -1,3 +1,4 @@
+<div>    
     <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" class="formulariopost">
         @csrf
         <div class="form-group">
@@ -8,5 +9,4 @@
         <button type="submit" class="btn btn-success criarpost">Criar Publicação</button>
 
     </form>
-
-    
+</div>

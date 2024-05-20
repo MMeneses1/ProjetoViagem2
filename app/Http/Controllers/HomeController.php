@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Livewire\Component;
 
-class HomeController extends Controller
+
+class HomeController extends Component
 {
     
     public function __construct()
@@ -13,7 +15,7 @@ class HomeController extends Controller
     }
 
     
-    public function index()
+    public function render()
     {
         return view('home');
     }

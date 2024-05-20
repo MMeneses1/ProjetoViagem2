@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
+use Livewire\Component;
 
-class MVPController extends Controller
+class MVPController extends Component
 {
     public function showLoginForm()
     {
