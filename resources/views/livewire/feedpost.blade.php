@@ -1,9 +1,15 @@
 <div>
     <div id="postsContainer" @if($noPosts) style="height: 80vh" @endif>
-    <livewire:posts />
+    
+    <livewire:posts/>
+    
     </div>
 
     <script>
+
+
+
+
     $(document).ready(function(){
         // Função para aplicar eventos aos botões de mostrar/comentar
         function applyEventsToNewComments(container) {
@@ -30,6 +36,7 @@
         applyEventsToNewComments(document);
 
     });
+
 
     </script>
 </div>

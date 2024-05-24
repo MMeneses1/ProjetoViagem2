@@ -3,7 +3,7 @@
     @section('titulo', 'Página Inicial')
     @section('css', '/css/perfil.css')
     @section('conteudo')
-        @include('layouts.publicacoes')
+        @livewire('Publicacoes')
 
         <!-- Conteúdo da página inicial -->
 
@@ -18,6 +18,6 @@
             @endforeach
         </ul>
 
-        @include('insta.feedpost')
+        <livewire:feedpost />
     @endsection
 </div>

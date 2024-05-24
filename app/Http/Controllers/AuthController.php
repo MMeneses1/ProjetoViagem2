@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User; // Adicionando a importação da classe User
 use Illuminate\Support\Facades\Hash; // Adicionando a importação da classe Hash
 
+
 class AuthController extends Controller
 {
     public function authenticate(Request $request)

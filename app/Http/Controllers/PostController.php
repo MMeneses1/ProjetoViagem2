@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use Livewire\Component;
+use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
-class PostController extends Component
+class PostController extends Controller
 {
     public function store(Request $request)
     {

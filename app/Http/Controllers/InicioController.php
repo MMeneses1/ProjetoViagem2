@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-use Livewire\Component;
+use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
-class InicioController extends Component
+class InicioController extends Controller
 {
   public function render($loadedPosts = 0)
 {

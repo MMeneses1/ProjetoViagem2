@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Livewire\Component;
+use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
 
-class HomeController extends Component
+class HomeController extends Controller
 {
     
     public function __construct()

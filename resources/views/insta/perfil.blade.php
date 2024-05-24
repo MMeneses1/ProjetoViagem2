@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            @include('layouts.publicacoes')
+            <livewire:publicacoes />
 
             <h5>Suas publicações</h5>
             @include('insta.perfilpost')       

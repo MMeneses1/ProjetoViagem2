@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 
-class ProfileController extends Component
+class ProfileController extends Controller
 {
     public function show()
     {

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
-use Livewire\Component;
+use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
-class DiarioController extends Component
+class DiarioController extends Controller
 {
     public function render()
     {

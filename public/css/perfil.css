@@ -61,8 +61,8 @@
 .postslista {
     list-style-type: none;
     padding: 0;
-    overflow-y: auto; /* Adicione esta linha para adicionar a barra de rolagem apenas para a lista de posts */
-    max-height: 80vh; /* Adicione esta linha para limitar a altura da lista de posts */
+    overflow-y: auto; 
+    /* max-height: 100vh;  */
 }
 
 
@@ -207,7 +207,7 @@
     text-decoration: none;
 }
 
-#postsContainer {
-    max-height: 80vh; /* Limita a altura do contêiner de posts */
-    overflow-y: auto; /* Adiciona uma barra de rolagem quando necessário */
-}
+/* #postsContainer {
+    max-height: 100vh;
+    overflow-y: auto; 
+} */
