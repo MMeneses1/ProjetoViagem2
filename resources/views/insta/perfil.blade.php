@@ -1,5 +1,5 @@
-<div>
     @extends('layouts.template-inside')
+    
     @section('titulo', 'Meu Perfil')
     @section('css', '/css/perfil.css')
     @section('conteudo')
@@ -105,4 +105,4 @@
             });
         </script>
     @endsection
-</div>
+

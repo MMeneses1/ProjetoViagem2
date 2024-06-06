@@ -1,3 +1,7 @@
+.container-fluid{
+    min-height: 100vh;
+    overflow-y: auto; 
+}
 
 .profilepicture {
     width: 110px;
@@ -76,7 +80,7 @@
 .linkperfil:hover,
 .listamodal a:hover {
     text-decoration: underline;
-    color: rgb(145, 203, 145);
+    color: #d2bbff;
 }
 
 /*Estilização dos posts*/
@@ -93,9 +97,9 @@
 
 
 .criarpost:hover {
-    background-color: rgb(105, 240, 59) !important;
+    background-color: #d2bbff !important;
     color: black;
-    border: 1px solid rgb(105, 240, 59) !important;
+    border: 1px solid #d2bbff !important;
 }
 
 

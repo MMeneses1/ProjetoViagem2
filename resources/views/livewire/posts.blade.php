@@ -10,13 +10,6 @@
                                 @if(Auth::user()->username == $post->user->username)
                                     @if(Auth::user()->foto_perfil)
                                         <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-
-
-
-
-
-
-
                                     @endif
                                     <a class = "linkperfil" href="{{ route('perfil') }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
                                 @else
@@ -24,20 +17,6 @@
                                         <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                     @endif
                                     <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 @endif
                             </span>
 
@@ -64,24 +43,6 @@
 
                         <!-- Botão para mostrar/esconder comentários -->
                         <button class="mostrar-comentarios-btn btn btn-link">Mostrar Comentários</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         <!-- Formulário de comentário (inicialmente oculto) -->
                         <div class="boxcomentarios" style="display: none;">

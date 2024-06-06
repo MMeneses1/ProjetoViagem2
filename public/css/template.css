@@ -6,7 +6,7 @@ body, html {
 }
 
 .container-fluid{
-    background-image: url('../images/background.png');
+    background-image: url('../images/background_sat_med.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -23,7 +23,7 @@ body, html {
 }
   
 .nav-link:hover{
-    color: #204028 !important;
+    color: #5e17eb !important;
     text-decoration: underline;
 }
   
@@ -66,6 +66,21 @@ body::-webkit-scrollbar-track {
   
 /* customizar a barrinha da barra de rolagem */
 body::-webkit-scrollbar-thumb {
-    background-color: rgb(105, 240, 59);
+    background-color: #d2bbff;
     border-radius: 20px;
+}
+
+button.btn.btn-success {
+    border-color: #5e17eb;
+    background-color: #5e17eb;
+}
+
+button.btn.btn-outline-success {
+    border-color: #5e17eb;
+    color: #5e17eb;
+    --bs-btn-hover-bg: #d2bbff;
+}
+
+img.selecionarimagem {
+    width: 30px;
 }

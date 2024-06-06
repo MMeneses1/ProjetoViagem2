@@ -20,6 +20,8 @@ class Posts extends Component
     public $postsPage;
     public $recommendations;
 
+    public $userId = null;
+
     public function carregarMais()
     {
         $this->porPagina += 5;
@@ -45,10 +47,13 @@ class Posts extends Component
     #[On('post-created')]
     public function render()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate($this->porPagina);
+        if($this->userId != null) {
+            $posts = Post::where('user_id', $this->userId)->orderBy('created_at', 'desc')->paginate($this->porPagina);
+        }
+        else {
+            $posts = Post::orderBy('created_at', 'desc')->paginate($this->porPagina);
+        }
         $this->noPosts = $posts->isEmpty();
-
-
 
         return view('livewire.posts', [
             'posts' => $posts,

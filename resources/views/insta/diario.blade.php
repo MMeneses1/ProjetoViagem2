@@ -1,4 +1,4 @@
-<div>
+
     @extends('layouts.template-inside')
     @section('titulo', 'Página Inicial')
     @section('css', '/css/perfil.css')
@@ -144,4 +144,3 @@
     </style>
 
     @endsection
-</div>

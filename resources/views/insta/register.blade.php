@@ -6,17 +6,21 @@
 
             <div class = "row landingpage">
                 <div class = "col-md-12">
-                    <h1 class = "titulolanding">Te levando para os melhores lugares</h1>
-                    <p class = "paragrafolanding">Comece a sua jornada</p>
-                    <a href="#formulario" wire:navigate>
-                        <img class="iconelanding" src="{{ asset('images/seta.png') }}">
-                    </a>
+                    <div class = "position-absolute top-50 start-50 translate-middle">
+                        <h1 class = "titulolanding">Te levando para os melhores lugares</h1>
+                    </div>
+                    <div class = "position-absolute bottom-0 start-50 translate-middle-x">
+                        <p class = "paragrafolanding">Comece a sua jornada</p>
+                        <a href="#formulario" wire:navigate>
+                            <img class="iconelanding" src="{{ asset('images/seta.png') }}">
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class = "row">
-                <div class = "col-md-6"></div>
-                <div class = "col-md-5">
+                <div class = "col-md-4"></div>
+                <div class = "col-md-4">
                 <form action="{{ route('register') }}" id = "formulario" name = "formulario" method="post" enctype="multipart/form-data" class="formregister needs-validation" novalidate> <!-- Adicione 'enctype' para lidar com o upload de arquivos -->
                     {{ csrf_field() }}
                         
@@ -82,7 +86,7 @@
                         <p class = "loginlanding">Já tem uma conta? <a href="{{ route('login') }}" wire:navigate>Conecte-se</a></p>
                     </form>
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-4"></div>
             </div>
     @endsection
 </div>

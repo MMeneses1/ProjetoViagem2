@@ -1,7 +1,7 @@
 <div>
     <div id="postsContainer" @if($noPosts) style="height: 80vh" @endif>
     
-    <livewire:posts />
+    <livewire:posts :userId="$otherUser->id"/>
 
     </div>
 

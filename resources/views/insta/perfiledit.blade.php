@@ -1,4 +1,4 @@
-<div>
+
     @extends('layouts.template-inside')
     @section('titulo', 'Atualizar Perfil')
     @section('css', '/css/perfiledit.css')
@@ -41,4 +41,3 @@
                 <button type="submit" class="btn btn-success">Atualizar Perfil</button>
             </form>
     @endsection
-</div>

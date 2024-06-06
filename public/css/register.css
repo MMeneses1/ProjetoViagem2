@@ -1,17 +1,22 @@
 /* CADASTRO - REGISTER.BLADE.PHP */
+.container-fluid{
+    background-image:  url('../images/register_background3.png');
+}
+
 .landingpage, .formregister .btn{
     color: white;
 }
 
 .landingpage{
+    min-height: 100vh;
     text-align: center;
 }
 
 .titulolanding{
     font-size: 4rem;
-    text-shadow: 2px 2px 4px #204028;
+    text-shadow: 2px 2px 4px #5e17eb;
     font-weight: 1000;
-    padding: 15% 15% 10% 15%;
+    /* padding: 15% 15% 10% 15%; */
     font-style: italic;
 }
 
@@ -22,7 +27,7 @@
 
 .iconelanding{
     animation: pulsar 1s infinite alternate;
-    width: 2%;
+    width: 2rem;
     margin-bottom: 3%;
 }
 
@@ -43,7 +48,7 @@
 
 .formregister label{
     font-weight: bold;
-    color:#204028;
+    color:#5e17eb;
 }
 
 .formregister input{
@@ -52,13 +57,13 @@
 }
 
 .formregister .btn{
-    background-color: #204028;
+    background-color: #5e17eb;
     align-items: center;
     width: 100%;
 }
 
 .formregister .btn:hover{
-    background-color: rgb(105, 240, 59);
+    background-color: #d2bbff;
 }
 
 .formregister p{
@@ -72,7 +77,7 @@
 }
 
 .formregister .loginlanding a{
-    color: #204028;
+    color: #5e17eb;
 }
 
 .formregister .loginlanding a:hover{

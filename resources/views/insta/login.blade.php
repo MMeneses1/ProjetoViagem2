@@ -1,4 +1,3 @@
-<div>
     @extends('layouts.header')
     @section('titulo', 'Login')
     @section('css', '/css/login.css')
@@ -39,4 +38,3 @@
     </div>
 
     @endsection
-</div>

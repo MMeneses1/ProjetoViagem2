@@ -9,7 +9,7 @@
 
 .titulologin{
     font-size: 4rem;
-    color: #204028;
+    color: #5e17eb;
     text-shadow: 2px 2px 4px white;
     font-weight: 1000;
     font-style: italic;
@@ -27,7 +27,7 @@ form{
 
 .formlogin label{
     font-weight: bold;
-    color:#204028;
+    color:#5e17eb;
     font-size: 1rem;
     margin-top: 5%;
 }
@@ -37,30 +37,30 @@ form{
 }
 
 .formlogin .btn{
-    background-color: #204028;
+    background-color: #5e17eb;
     color: white;
     align-items: center;
     width: 100%;
 }
 
 .formlogin .btn:hover{
-    background-color: rgb(105, 240, 59);
+    background-color: #d2bbff;
 }
 
 .formlogin p{
     text-align: center;
     font-size: 0.8rem;
-    color: #204028;
+    color: #5e17eb;
 }
 
 .formlogin .registerlogin{
     margin-top: 5%;
     margin-bottom: 0;
-    color: #204028;
+    color: #5e17eb;
 }
 
 .formlogin a{
-    color: #204028;
+    color: #5e17eb;
     font-size: 0.8rem;
 }
 

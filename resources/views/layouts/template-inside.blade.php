@@ -1,12 +1,12 @@
-<div>
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@yield('titulo') | Tripster</title>
-        <!-- <link type="text/css" href="{{ url('/css/template.css') }}" rel="stylesheet"> -->
-        <link type="text/css" href="@yield('css')" rel="stylesheet">
+        <title>@yield('titulo') | Pilgrim</title>
+        <link href="css/template.css" rel="stylesheet">
+        <link href="css/perfil.css" rel="stylesheet">
+        <link href="@yield('css')" rel="stylesheet">
         <link rel="shortcut icon" href="/images/bussola.png" type="image/icon">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Prompt:wght@300;400&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -23,7 +23,7 @@
                 <div class="container">
                     <a class="navbar-brand" href="">
                         <img src="{{ asset('images/bussola.png') }}" width="25" height="25" alt="Bússola" class="d-inline-block align-text-top">
-                        Tripster
+                        Pilgrim
                     </a>
                 </div>
             </nav>
@@ -45,10 +45,10 @@
                             <img src = "{{ asset('images/config.png') }}"/>
                             Configurações
                         </a>
-                        <form id="logout-form" action="/logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" wire:navigate>
+                        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" wire:navigate>
                             <img src = "{{ asset('images/sair.png') }}"/>
                             Sair
                         </a>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class = "col-md-3">
-                    <h3>Tripsters</h3>
+                    <h3>Pilgrims</h3>
                     <div class="input-group">
                         <form action="{{ route('pesquisa') }}" method="GET" class = "formulariopesquisar">
                         <input type="text" id="campoPesquisa" name="query" placeholder="Pesquisar por nome ou username" class="form-control" aria-label="Recipient's username" aria-describedby="pesquisar">
@@ -127,4 +127,3 @@
 
     </body>
     </html>
-</div>
