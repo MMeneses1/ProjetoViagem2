@@ -61,7 +61,7 @@ body::-webkit-scrollbar {
  
 /* background da barra de rolagem */
 body::-webkit-scrollbar-track {
-    background-color: #F4FFF7;
+    background-color: #ede3ff;
 }
   
 /* customizar a barrinha da barra de rolagem */

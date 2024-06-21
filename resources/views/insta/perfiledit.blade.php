@@ -38,6 +38,6 @@
                     <input class="form-control" type="text" id="idioma" name="idioma" value="{{ old('idioma', Auth::user()->idioma) }}">
                 </div>
 
-                <button type="submit" class="btn btn-success">Atualizar Perfil</button>
+                <button type="submit" class="btn btn-success" id="editar">Atualizar Perfil</button>
             </form>
     @endsection

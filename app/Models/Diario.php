@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diario extends Model
 {
-    protected $fillable = ['content', 'post_ids'];
+    use HasFactory;
+
+    protected $fillable = ['content', 'user_id'];
+
+    protected $table = 'diarios';
 
     public function posts()
     {

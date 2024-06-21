@@ -13,6 +13,7 @@ class CreateDiariosTable extends Migration
             $table->text('content');
             $table->string('address')->nullable(); // Adicionando a coluna 'address'
             $table->text('post_ids')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->string('image')->nullable();
             $table->timestamps();
         });

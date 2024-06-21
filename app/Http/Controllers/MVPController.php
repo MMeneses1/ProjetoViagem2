@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Diario;
 use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
 class MVPController extends Controller

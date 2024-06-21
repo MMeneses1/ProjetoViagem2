@@ -48,8 +48,8 @@
 
 
 .perfilfeed {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -57,7 +57,7 @@
 
 .formulariopost
 .formulariocomentario {
-    background-color: #f4fff7;
+    background-color: #ede3ff;
     padding: 2%;
 }
 
@@ -66,6 +66,7 @@
     list-style-type: none;
     padding: 0;
     overflow-y: auto; 
+    overflow-x: hidden; 
     /* max-height: 100vh;  */
 }
 
@@ -90,6 +91,10 @@
     margin-bottom: 3%;
 }
 
+.postagemTudo {
+    background-color: #ede3ff;
+    border-radius: 0%;
+}
 
 .criarpost {
     margin-top: 2%;
@@ -104,7 +109,7 @@
 
 
 .post {
-    background-color: #f4fff7 !important;
+    background-color: #ede3ff !important;
     margin-bottom: 1%;
 }
 
@@ -116,29 +121,53 @@
 }
 
 
+.curtirpost {
+    width: 30px;
+}
+
 .excluirpost {
     width: 20px;
 }
 
 
 .conteudopost {
-    min-width: 60%;
+    min-width: 100%;
     max-width: 100%;
 }
 
+.quadradopost {
+    container-type: size;
+    container-name: quadradopost;
+    border-radius: 5%;
+    background-color: #d2bbff;
+    width: 100%;
+    max-width: 60vh;
+    aspect-ratio: 1;
+}
 
 .textopost {
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 7.5cqw;
+    container-name: quadradopost;
 }
 
-
-.imagempost img {
-    max-width: 500px;
+.card-body {
+    padding: 8px !important;
 }
-
 
 .imagempost {
-    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.imagempost img {
+    min-height: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover !important;
+    position: relative;
+    border-radius: 5%;
 }
 
 /*Estilização dos comentários*/
@@ -153,8 +182,7 @@
 
 .comentarioslista {
     padding: 2%;
-    background-color: #F4FFF7;
-    background-color: #f4fff7;
+    background-color: #ede3ff;
 }
 
 
@@ -178,7 +206,12 @@
 
 
 .comentarioimagem {
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
     max-width: 200px;
+    object-fit: cover;
+    border-radius: 5%;
 }
 
 
@@ -193,15 +226,29 @@
 
 
 .comentarioslista {
-    max-height: 80vh;
+    max-height: 50vh;
     overflow-y: auto;
 }
 
 
 
 /* customizar a barrinha da barra de rolagem */
-.comentarioslista::-webkit-scrollbar-thumb {
+/* .comentarioslista::-webkit-scrollbar-thumb {
     background-color: lightgrey;
+    border-radius: 20px;
+} */
+.comentarioslista::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* background da barra de rolagem */
+.comentarioslista::-webkit-scrollbar-track {
+    background-color: #ede3ff;
+}
+  
+/* customizar a barrinha da barra de rolagem */
+.comentarioslista::-webkit-scrollbar-thumb {
+    background-color: #d2bbff;
     border-radius: 20px;
 }
 

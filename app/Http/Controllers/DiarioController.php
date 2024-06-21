@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Diario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Diario;
 use Spatie\MediaLibraryPro\Livewire\Concerns\WithMedia;
 
 class DiarioController extends Controller
 {
     public function render()
     {
-        $diarioPosts = Diario::with('posts')->get(); // Recupera todos os posts relacionados para cada entrada do diário
+        $diarioPosts = Diario::where('user_id', auth()->user()->id)->with('posts')->get(); // Recupera todos os posts relacionados para cada entrada do diário
 
         return view('insta.diario', compact('diarioPosts'));
     }

@@ -11,15 +11,20 @@
                                     @if(Auth::user()->foto_perfil)
                                         <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                     @endif
-                                    <a class = "linkperfil" href="{{ route('perfil') }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+                                    <a class = "linkperfil" href="{{ route('perfil') }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }} • Diário: {{ $post->diario->content }}
                                 @else
                                     @if($post->user->foto_perfil)
                                         <img src="{{ asset($post->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
                                     @endif
-                                    <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }}
+                                    <a class = "linkperfil" href="{{ route('perfil.outro', ['username' => $post->user->username]) }}" wire:navigate>{{ $post->user->username }}</a> • {{ $post->created_at->diffForHumans() }} • Diário: {{ $post->diario->content }}
                                 @endif
                             </span>
-
+                            <form wire:submit="like({{ $post }})">
+                                <a>{{$post->likes}}</a>
+                                <button type="submit" class="btn">
+                                    <img class="curtirpost" src="{{ asset('images/likevazio.png') }}"/>
+                                </button>
+                            </form>
                             <!-- Verifique se a postagem pertence ao usuário autenticado -->
                             @if(Auth::user()->id === $post->user->id)
                                 <!-- Botão de exclusão do post -->
@@ -32,77 +37,25 @@
                                 </form>
                             @endif
                         </div>
-                        <div class="card-body">
-                            <p class="textopost">{{ $post->content }}</p>
-                            @if($post->image)
-                                <div class="imagempost">
-                                    <img src="{{ asset($post->image) }}" alt="Imagem da postagem">
+                        <div class="row maxtam">
+                            @foreach($post->paginas as $index => $pagina)
+                            <div class="card-body col-md-4 d-flex justify-content-center">
+                                <div class="quadradopost align-content-center flex-wrap">  
+                                    @if(!empty($pagina->content))
+                                    <p class="textopost">{{ $pagina->content }}</p>
+                                    @endif
+                                    @if($pagina->image)
+                                    <div class="imagempost">
+                                        <img src="{{ asset($pagina->image) }}" alt="Imagem da postagem">
+                                    </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
+                            @endforeach
                         </div>
 
-                        <!-- Botão para mostrar/esconder comentários -->
-                        <button class="mostrar-comentarios-btn btn btn-link">Mostrar Comentários</button>
+                        <livewire:comments :$post :postId="$post->id" :key="rand()"/>
 
-                        <!-- Formulário de comentário (inicialmente oculto) -->
-                        <div class="boxcomentarios" style="display: none;">
-                            <form action="{{ route('comment.store', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data" class="formulariocomentario">
-                                @csrf
-                                <div class="form-group groupcomentario">
-                                    <textarea id="comment" name="comment" class="form-control" rows="1" placeholder="Escreva um comentário" required></textarea>
-                                    <label for='comment_image'>
-                                        <img class="selecionarimagem" src="{{ asset('images/image.png') }}">
-                                    </label>
-                                    <input class="form-control-file inputfile" type="file" id="comment_image" name="comment_image">
-                                </div>
-                                <button type="submit" class="btn btn-outline-success comentarpost">Comentar</button>
-                            </form>
-
-                            <!-- Lista de comentários -->
-                            <ul role="list" class="comentarioslista">
-                                <h5>Comentários</h5>
-                                @forelse($post->comments->sortByDesc('created_at') as $comment)
-                                    <li class="comentarioitem">
-                                        <div class="comentario">
-                                            <div class="header">
-                                                <span>
-                                                    @if(Auth::user()->username == $comment->user->username)
-                                                        @if(Auth::user()->foto_perfil)
-                                                            <img src="{{ asset(Auth::user()->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                                        @endif
-                                                        <a class="linkperfil" href="{{ route('perfil') }}" wire:navigate>{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
-                                                    @else
-                                                        @if($comment->user->foto_perfil)
-                                                            <img src="{{ asset($comment->user->foto_perfil) }}" alt="Foto de Perfil" class="perfilfeed">
-                                                        @endif
-                                                        <a class="linkperfil" href="{{ route('perfil.outro', ['username' => $comment->user->username]) }}" wire:navigate>{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}
-                                                    @endif
-                                                </span>
-
-                                                <!-- Botão de exclusão de comentário -->
-                                                @if(Auth::check() && (Auth::user()->id === $comment->user->id || Auth::user()->id === $post->user->id))
-                                                    <form action="{{ route('comment.delete', ['comment' => $comment->id]) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn">
-                                                            <img class="excluirpost" src="{{ asset('images/lixeira.png') }}"/>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            </div>
-                                            <div class="conteudocomentario">
-                                                <p class="textocomentario">{{ $comment->text }}</p>
-                                                @if($comment->image)
-                                                    <img src="{{ asset($comment->image) }}" alt="Imagem do Comentário" class="comentarioimagem">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </li>
-                                @empty
-                                    <p>Nenhum comentário ainda.</p>
-                                @endforelse
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </li>

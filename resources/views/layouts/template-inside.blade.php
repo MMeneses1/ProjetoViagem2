@@ -4,14 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('titulo') | Pilgrim</title>
-        <link href="css/template.css" rel="stylesheet">
-        <link href="css/perfil.css" rel="stylesheet">
+        <link href="../css/template.css" rel="stylesheet">
+        <link href="../css/perfil.css" rel="stylesheet">
         <link href="@yield('css')" rel="stylesheet">
         <link rel="shortcut icon" href="/images/bussola.png" type="image/icon">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Prompt:wght@300;400&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="jquery.fittext.js"></script>
         
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -34,6 +35,10 @@
                         <a class="nav-link" href="/feed" wire:navigate>
                             <img src = "{{ asset('images/home.png') }}"/>
                             Início
+                        </a>
+                        <a class="nav-link" href="/diario" wire:navigate>
+                            <img src = "{{ asset('images/diario.png') }}"/>
+                            Meus Diários
                         </a>
                         <a class="nav-link" href="/perfil" wire:navigate>
                             @if(Auth::user()->foto_perfil)
@@ -60,16 +65,17 @@
                 </div>
 
                 <div class = "col-md-3">
-                    <h3>Pilgrims</h3>
-                    <div class="input-group">
-                        <form action="{{ route('pesquisa') }}" method="GET" class = "formulariopesquisar">
-                        <input type="text" id="campoPesquisa" name="query" placeholder="Pesquisar por nome ou username" class="form-control" aria-label="Recipient's username" aria-describedby="pesquisar">
-                        <!--<button   class="btn" type="submit" id="pesquisarBtn" disabled>
-                            <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
-                        </button>-->
-                        </form>
-                    
-                    <div id="sugestoesPesquisa"></div>               
+                        <h3>Pilgrims</h3>
+                        <div class="input-group">
+                            <form action="{{ route('pesquisa') }}" method="GET" class = "formulariopesquisar">
+                            <input type="text" id="campoPesquisa" name="query" placeholder="Pesquisar por nome ou username" class="form-control" aria-label="Recipient's username" aria-describedby="pesquisar">
+                            <!--<button   class="btn" type="submit" id="pesquisarBtn" disabled>
+                                <img class = "botaopesquisar" src = "{{ asset('images/lupa.png') }}"/>
+                            </button>-->
+                            </form>
+                        </div>
+                        <br>
+                            <div id="sugestoesPesquisa"></div>
                     </div>
                 </div>
             </div>

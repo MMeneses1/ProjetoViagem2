@@ -4,7 +4,7 @@
 }
 
 .formularioeditar{
-    background-color: #F4FFF7;
+    background-color: #ede3ff;
     padding: 5%;
     margin: 5%;
 }
@@ -20,7 +20,9 @@ label{
     margin-top: 2%;
 }
 
-.btn{
+.btn#editar{
+    background-color: #5e17eb;
+    --bs-btn-border-color: #5e17eb !important;
     margin-top: 5%;
 }
 
